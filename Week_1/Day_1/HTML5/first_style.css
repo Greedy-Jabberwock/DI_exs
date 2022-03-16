@@ -1,0 +1,14 @@
+body {
+	background-color: #5F9769;
+	margin: 20px 30px;
+}
+
+table {
+	border-style: dotted;
+	border-color: firebrick;
+}
+
+img {
+	width: 200px;
+	height: 150px;
+}

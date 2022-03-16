@@ -1,0 +1,49 @@
+body {
+    font-family: 'Sansita Swashed', cursive;
+    color: #15133ede;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(64, 104, 102, 0.89);
+}
+
+nav p, button {
+    margin: 10px 25px;
+}
+
+nav, p {
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+#info {
+    display: flex;
+    padding: 200px 0px;
+    flex-direction: column;
+    align-items: center;
+    background-image: url("../Assets/landing_sea.jpeg");
+    background-size: cover;
+}
+
+#links {
+    display: flex;
+    justify-content: space-around;
+}
+
+.link_area {
+    margin: 7%;
+    align-self: center;
+    text-align: center;
+}
+
+.link_area p {
+    font-size: smaller;
+}
