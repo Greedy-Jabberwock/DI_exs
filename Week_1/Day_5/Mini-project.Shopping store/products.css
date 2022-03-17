@@ -1,0 +1,13 @@
+table {
+    margin: 20px 10px;
+}
+
+.item {
+    background-image: url(../assets/1_longbow.jpg);
+    background-size: 300px 300px;
+    border: 2px solid green
+}
+
+span {
+    
+}

@@ -1,0 +1,38 @@
+main {
+    text-align: center;
+}
+
+nav {
+    background-color: aqua;
+    text-align: left;
+    position: relative;
+    height: auto;
+}
+
+nav > div {
+    display: inline-block;
+    float: right;
+    right: 40px;
+    margin: 30px 60px;
+    padding: 8px 40px;
+    font-size: 28px;
+}
+
+div > span {
+    padding: 0px 40px;
+}
+
+#label > img {
+    height: 10vh;
+    margin: 25px;
+}
+
+#menu {
+    background-color: whitesmoke;
+}
+
+footer {
+    background-color: aqua;
+    font-size: 1.5em;
+    padding: 15px 0px;
+}
