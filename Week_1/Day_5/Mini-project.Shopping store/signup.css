@@ -1,0 +1,16 @@
+section {
+    padding: 60px;
+    font-size: 22px;
+}
+
+form > div {
+    padding: 10px 0px;
+}
+
+#pass {
+    margin-left: 4px;
+}
+
+#pass_rep {
+    margin-right: -9px;
+}
