@@ -1,0 +1,37 @@
+#grand {
+    background-color: grey;
+    position: absolute;
+    width: 400px;
+    height: 110px;
+    top: 20px;
+    left: 40px;
+    right: 100px;
+}
+
+#parent, #child {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+}
+
+#parent {
+    background-color: rgb(50, 111, 241);
+    left: 3px;
+    top: 2px;
+}
+
+#child {
+    background-color: orange;
+    left: 4px;
+    top: 3px;
+}
+
+p {
+    visibility: hidden;
+}
+
+@media screen and (max-width: 650px) {
+    body {
+        background-color: blue;
+    }  
+} 

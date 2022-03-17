@@ -1,0 +1,86 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    line-height: 0px;
+}
+
+nav {
+    background-color: brown;
+    display: flex;
+    justify-content: space-between;
+    padding: 2% 4%;
+    font-size: 1.5em;
+}
+
+div > span {
+    padding: 0px 20px;
+}
+
+#visit_card {
+    display: flex;
+    padding: 6% 15%;
+    align-items: center;
+}
+
+#visit_card > div {
+    padding: 0px 20px;
+}
+
+img {
+    height: 175px;
+    width: 242px;
+    padding-top: 5px;
+}
+
+#visit_card + div {
+    margin-top: 4px;
+}
+
+div div {
+    margin-top: 2px;
+}
+
+.profession {
+    font-size: 14px;
+}
+
+.description {
+    font-size: 17px;
+}
+
+#info {
+    background-color: rgba(138, 43, 226, 0.3);
+    padding: 0px 3%;
+}
+
+h3 {
+    padding-top: 20px;
+}
+
+tr {
+    display: flex;
+    justify-content: space-around;
+}
+
+td {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 20px;
+    padding: 0px 20px;
+}
+
+td > div {
+    padding: 20px;
+    align-items: center;
+    align-self: center;
+}
+
+i {
+    font-size: 23px;
+    align-self: center;
+}
+
+footer {
+    background-color: burlywood;
+    text-align: center;
+}
