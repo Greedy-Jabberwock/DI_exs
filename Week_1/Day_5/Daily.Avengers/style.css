@@ -1,0 +1,171 @@
+body {
+    margin: 0%;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 30px;
+    background-color: #1b7c7c;
+    margin: 0px;
+    padding: 20px 40px;
+    font-size: 30px;
+}
+
+img {
+    width: 5%;
+    height: 5%;
+    justify-content: flex-start;
+}
+
+li {
+    display: inline-block;
+    list-style-type: none;
+    font-size: 2em;
+    margin: 5px 20px 0px;
+    padding: 0px 20px;
+}
+
+section {
+    background-image: url("./assets/widow.jpg");
+    background-size: cover;
+    padding: 15% 100px;
+    color: #ffffff;
+    font-size: 3em;
+    -webkit-text-stroke: #000000 0.3px;
+}
+
+h1 {
+    font-size: 2em;
+    margin: 5% 15% 0px 0px;
+}
+
+section p {
+    font-size: 24px;
+    width: 400px;
+}
+
+footer {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 30px;
+    background-color: #1b7c7c;
+    margin: 0px;
+    padding: 40px 40px;
+    font-size: 30px;
+}
+
+a:link {
+    color: black;
+    text-decoration:none;
+}
+
+a:visited {
+    color: black;
+    text-decoration:none;
+}
+
+a:active {
+    color: black;
+    text-decoration:none;
+}
+
+a:hover {
+    color: rgb(36, 26, 26);
+    text-decoration: underline;
+}
+
+@media screen
+and (min-width: 480px)
+and (max-width: 600px) {
+    nav {
+        margin: 30px 30px;
+        background-color: #1b7c30;
+        margin: 0px;
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+
+    img {
+        width: 15%;
+        padding-left: 20px;
+    }
+
+    li {
+        margin: 5px 0px 0px;
+        padding: 0px 15px;
+        font-size: 25px;
+    }
+
+    section {
+        padding: 200px 30px;
+
+    }
+
+    h1 {
+        width: 232px;
+        font-size: 18px;
+    }
+
+    section p {
+        width: 300px;
+        font-size: 18px;
+    }
+
+    footer {
+        background-color: #1b7c30;
+        padding: 20px;
+        font-size: 19px;
+    }
+}
+
+@media screen
+and (min-width: 600px)
+and (max-width: 768px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        margin: 30px 30px;
+        background-color: #7c751b;
+        margin: 0px;
+        padding: 20px 40px;
+    }
+
+    li {
+        margin: 5px 0px 0px;
+        padding: 0px 26px;
+        font-size: 25px;
+    }
+
+    img {
+        width: 10%;
+    }
+
+    footer {
+        background-color: #7c751b;
+        font-size: 25px;
+    }
+}
+
+@media screen
+and (min-width: 768px)
+and (max-width: 992px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        margin: 30px 30px;
+        background-color: #7c261b;
+        margin: 0px;
+        padding: 4px 40px;
+        font-size: 17px;
+    }
+
+    img {
+        width: 10%;
+    }
+
+    footer {
+        background-color: #7c261b;
+    }
+}

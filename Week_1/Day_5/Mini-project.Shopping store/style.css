@@ -23,7 +23,7 @@ div > span {
 }
 
 #label > img {
-    height: 10vh;
+    height: 60px;
     margin: 25px;
 }
 
@@ -33,6 +33,40 @@ div > span {
 
 footer {
     background-color: aqua;
-    font-size: 1.5em;
+    font-size: 14px;
     padding: 15px 0px;
+}
+
+@media screen
+and (min-width: 480px)
+and (max-width: 600px) {
+    nav > div {
+        margin: 30px 10px;
+        padding: 8px 40px;
+        font-size: 16px;
+    }
+
+    div > span {
+        padding: 0px 15px;
+    }
+}
+
+@media screen
+and (min-width: 600px)
+and (max-width: 768px) {
+    nav > div {
+        margin: 30px 8px;
+        padding: 8px 20px;
+        font-size: 16px;
+    }
+}
+
+@media screen
+and (min-width: 768px)
+and (max-width: 992px) {
+    nav > div {
+        margin: 30px 9px;
+        padding: 8px 40px;
+        font-size: 23px;
+    }
 }

@@ -1,13 +1,189 @@
-table {
-    margin: 20px 10px;
+.item_row {
+    margin: 30px;
+}
+
+.item_row > div {
+    display: inline-block;
+    height: 420px;
+    width: 260px;
+    margin: 10px 13px;
 }
 
 .item {
-    background-image: url(../assets/1_longbow.jpg);
-    background-size: 300px 300px;
-    border: 2px solid green
+    box-shadow: 0px 0px 3px 2px lightblue;
 }
 
-span {
-    
+.item_card {
+    background-size: 260px 300px;
+    background-repeat: no-repeat;
+    height: 300px;
+}
+
+.item_info {
+    background-color: aqua;
+    background-size: cover;
+    height: 120px;
+}
+
+.badges {
+    height: 0px;
+}
+
+div > span.badge {
+    display: inline-block;
+    height: 45px;
+    line-height: 45px;
+    position: relative;
+    top: 23px;
+}
+
+.new_badge {
+    right: 50px;
+}
+
+.sale_badge {
+    left: 66px;
+    width: 50px;
+    padding: 0;
+}
+
+.hidden_element {
+    height: 300px;
+    opacity: 0;
+}
+
+.hidden_element:hover {
+    height: 300px;
+    opacity: 1;
+}
+
+.hidden_element > i {
+    position: relative;
+    padding: 0;
+    font-size: 30px;
+    margin: 159px 10px 0px;
+    background-color: aquamarine;
+}
+
+.item_name {
+    margin: 0;
+    padding: 10px;
+}
+
+.prices > span {
+    padding: 0px 10px;
+    margin-bottom: 15px;
+}
+
+.old_price {
+    text-decoration: line-through;
+    color: gray 0.3;
+}
+
+.add_button {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+#item1 {
+    background-image: url(../assets/arc1.jpg);
+}
+
+#item2 {
+    background-image: url(../assets/arc2.jpg);
+}
+
+#item3 {
+    background-image: url(../assets/arc3.jpg);
+}
+
+#item4 {
+    background-image: url(../assets/arc4.jpg);
+}
+
+#item5 {
+    background-image: url(../assets/arc5.jpg);
+}
+
+#item6 {
+    background-image: url(../assets/arc6.jpg);
+}
+
+#item7 {
+    background-image: url(../assets/arc7.jpg);
+}
+
+#item8 {
+    background-image: url(../assets/arc8.jpg);
+}
+
+#item9 {
+    background-image: url(../assets/arc9.jpg);
+}
+
+#item10 {
+    background-image: url(../assets/arc10.jpg);
+}
+
+#item11 {
+    background-image: url(../assets/arc11.jpg);
+}
+
+#item12 {
+    background-image: url(../assets/arc12.jpg);
+}
+
+#item13 {
+    background-image: url(../assets/arc13.jpg);
+}
+
+#item14 {
+    background-image: url(../assets/arc14.jpg);
+}
+
+#item15 {
+    background-image: url(../assets/arc15.jpg);
+}
+
+#item16 {
+    background-image: url(../assets/arc16.jpg);
+}
+
+#item17 {
+    background-image: url(../assets/arc17.jpg);
+}
+
+#item18 {
+    background-image: url(../assets/arc18.jpg);
+}
+
+@media screen
+and (min-width: 480px)
+and (max-width: 600px) {
+    .item_row > :not(div.small_device) {
+        display: none;
+    }
+}
+
+@media screen
+and (min-width: 600px)
+and (max-width: 768px) {
+    .item_row > :not(div.medium_device) {
+        display: none;
+    }
+}
+
+@media screen
+and (min-width: 768px)
+and (max-width: 992px) {
+    .item_row > :not(div.large_device) {
+        display: none;
+    }
+}
+
+@media screen
+and (min-width: 992px) {
+    .item_row > :not(div.extra_device) {
+        display: none;
+    }
 }
