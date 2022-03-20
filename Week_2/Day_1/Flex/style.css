@@ -1,0 +1,104 @@
+main {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+main > div {
+    border: 2px solid red;
+    width: 500px;
+    height: 200px;
+    margin: 10px 0px;
+}
+
+.exercise_1 {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    color: white;
+}
+
+div > div {
+    background-color: cadetblue;
+    font-size: 2em;
+    margin: 5px;
+    text-align: center;
+    color: white;
+}
+
+.exercise_1 > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 0px;
+}
+
+.exercise_1 > div:nth-child(2) {
+    height: 40%;
+    width: 50%;
+    align-self: center;
+}
+
+.exercise_2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+.exercise_2 > div {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.exercise_2 > div:nth-child(2) {
+    align-self: flex-end;
+    width: 30%;
+}
+
+.exercise_3 {
+    display: flex;
+    height: 60px;
+}
+
+.exercise_3 > div {
+    margin: 10px 0px;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.exercise_3 > .logo {
+    flex-grow: 0.2;
+    margin-left: 5px;
+    background-color: darkslateblue;
+}
+
+.exercise_3 > .teams {
+    flex-grow: 1.5;
+}
+
+.exercise_3 > .products {
+    flex-grow: 1.5;
+    margin-right: 5px;
+    background-color: coral;
+}
+
+.exercise_4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.exercise_4 > div {
+    flex-grow: 15;
+    width: 65%;
+}
+
+.exercise_4 > div:nth-child(2) {
+    width: 98%;
+}

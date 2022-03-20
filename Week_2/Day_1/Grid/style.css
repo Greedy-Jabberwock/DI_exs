@@ -1,0 +1,17 @@
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    border: 3px solid green;
+    height: 700px;
+}
+
+.box {
+    background-color: blueviolet;
+    border: 1px solid tomato;
+}
+
+.box-big {
+    background-color: aqua;
+    width: 3fr;
+}
