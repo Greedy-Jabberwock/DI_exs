@@ -1,17 +1,185 @@
 main {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    text-align: center;
+}
+
+main > section{
     border: 3px solid green;
+    height: 500px;
+    margin: 30px 10px;
+}
+
+/* ------------------------- Excercise 1 -------------------------------------- */
+
+#excercise_1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    grid-template-rows: repeat(4, 1fr);
+    column-gap: 60px;
+    row-gap: 50px;
+    padding: 30px;
+}
+
+#excercise_1 > div {
+    border: 2px solid black;
+}
+
+.first {
+    background-color: brown;
+}
+
+.second {
+    background-color: cornflowerblue;
+    grid-column: 2 / span 3;
+}
+
+.last {
+    background-color: chartreuse;
+    grid-column: span 4;
+}
+
+/* ------------------------- Excercise 2 -------------------------------------- */
+
+#header {
+    grid-area: header;
+    background-color: cadetblue;
+}
+
+#hero {
+    grid-area: hero;
+    background-color: lightcoral;
+}
+
+#sidebar {
+    grid-area: sidebar;
+    background-color: darkolivegreen;
+}
+
+#main_ {
+    grid-area: main;
+    background-color: goldenrod;
+}
+
+#extra {
+    grid-area: extra;
+    background-color: gray;
+}
+
+#images {
+    grid-area: images;
+    background-color:forestgreen;
+}
+
+#posts {
+    grid-area: posts;
+    background-color: indianred;
+}
+
+#footer {
+    grid-area: footer;
+    background-color: orange;
+}
+
+#excercise_2 {
+    color: white;
+    font-size: 1.3em;
+    padding: 30px 200px;
+    display: grid;
+    grid-template-columns: 1fr 90px 125px; 
+    grid-template-rows: 40px repeat(3, 120px) 90px 40px;
     height: 700px;
+    width: 400px;
+    gap: 10px;
+    grid-template-areas: 
+        "header  header header"
+        "hero    main   main"
+        "sidebar main   main"
+        "sidebar extra  extra"
+        "images  images posts"
+        "footer  footer footer";
+
 }
 
-.box {
-    background-color: blueviolet;
-    border: 1px solid tomato;
+#excercise_2 > div {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 10px;
 }
 
-.box-big {
-    background-color: aqua;
-    width: 3fr;
+#inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+#inner, p{
+    font-size: 22px;
+    margin-top: 0;
+}
+
+.small_text {
+    font-size: 10px;
+}
+/* ------------------------- Excercise 3 -------------------------------------- */
+
+#excercise_3 {
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 10px;
+    height: 300px;
+    width: 80%;
+    color: white;
+    font-size: 20px;
+}
+
+.one, .six {
+    background-color: rgb(175, 11, 93);
+}
+
+.two, .seven {
+    background-color: rgb(135, 44, 219);
+}
+
+.three, .eight {
+    background-color: darkslateblue;
+}
+
+.one {
+    grid-column: span 4;
+}
+
+.two {
+    grid-row: span 2;
+}
+
+.four {
+    background-color: aquamarine;
+    grid-column: span 2;
+}
+
+.five {
+    background-color: palevioletred;
+    grid-column: span 3;
+}
+
+.six {
+    grid-column: span 2;
+}
+
+.seven {
+    grid-column: span 2;
+}
+
+.eight {
+    grid-column: span 4;
+}
+
+#excercise_3 > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
