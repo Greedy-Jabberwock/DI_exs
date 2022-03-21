@@ -1,0 +1,113 @@
+#header {
+    grid-area: header;
+    font-size: 2em;
+}
+
+#info {
+    grid-area: info;
+    font-size: 2em;
+    font-weight: bold;
+    color: firebrick;
+}
+
+#rec-card1 {
+    grid-area: rec-1;
+    background-color: blueviolet;
+}
+
+#rec-card2 {
+    grid-area: rec-2;
+    background-color: chartreuse;
+}
+
+#rec-card3 {
+    grid-area: rec-3;
+    background-color: cornflowerblue;
+}
+
+main {
+    background-image: url("./assets/map.jpg");
+    background-size: cover;
+    padding: 40px;
+    text-align: center;
+    display: grid;
+    gap: 45px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-areas: 
+        "header   header   header"
+        "info     info     info"
+        "rec-1    .        rec-3"
+        "rec-1    rec-2    rec-3"
+        ".       rec-2    .     ";
+}
+
+.numbers {
+    display: flex;
+    justify-content: space-around;
+    align-content: flex-start;
+}
+
+.numbers > div > p {
+    margin: 0;
+}
+
+.description {
+    font-size: 12px;
+}
+
+.rec-info {
+    padding: 20px 30px;
+}
+
+.icon {
+    display: flex;
+}
+
+.icon > hr {
+    width: 40%;
+    height: 0.5px;
+    align-self: center;
+}
+
+.icon > i {
+    font-size: 45px;
+}
+
+.author {
+    align-self: center;
+    padding-top: 30px;
+}
+
+.author-name {
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+@media screen and
+(max-width: 480px) {
+    main {
+        
+        gap: 45px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 180px 300px repeat(3, 1fr);
+        grid-template-areas: 
+            "header"
+            "info"
+            "rec-1"
+            "rec-2"
+            "rec-3";
+    }
+
+    #header {
+        font-size: 1em;
+    }
+
+    .numbers {
+        flex-direction: column;
+    }
+
+    .numbers > div {
+        padding: 20px 0px;
+    }
+}

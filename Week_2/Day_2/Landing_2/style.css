@@ -1,0 +1,42 @@
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: white;
+    background-color: rgb(7, 71, 71);
+    padding: 10px;
+}
+
+header > button {
+    background-color: rgb(57, 156, 236);
+    border-radius: 15%;
+    border: none;
+    margin: 0px 20px;
+    color: white;
+    padding: 10px 15px;
+}
+
+main {
+    text-transform: uppercase;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    padding: 0px 33%;
+    background-image: url(../Landing_2/assets/city.jpg);
+    background-size: cover;
+}
+
+h1 {
+    text-align: center;
+}
+
+.big {
+    grid-column: span 3;
+}
+
+select {
+    width: 100%;
+}
