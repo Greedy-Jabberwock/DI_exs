@@ -8,13 +8,16 @@ header {
     padding: 10px;
 }
 
-header > button {
+button {
     background-color: rgb(57, 156, 236);
-    border-radius: 15%;
     border: none;
+    border-radius: 4px;
     margin: 0px 20px;
     color: white;
     padding: 10px 15px;
+    justify-self: center;
+    grid-column: span 3;
+    font-size: 1.1em;
 }
 
 main {
@@ -23,14 +26,23 @@ main {
     align-items: center;
     justify-content: center;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    padding: 0px 33%;
+    grid-template-rows: 1fr repeat(3, 14vh) repeat(2, 30vh);
+    padding: 8vh 33%;
     background-image: url(../Landing_2/assets/city.jpg);
     background-size: cover;
+    color: white
 }
 
 h1 {
     text-align: center;
+    margin: 10vh 0;
+}
+
+input {
+    border: none;
+    border-radius: 4px;
+    padding: 0.5vh;
+    margin: 10px 0px;
 }
 
 .big {
@@ -39,4 +51,17 @@ h1 {
 
 select {
     width: 100%;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5vh;
+    margin: 10px 0px;
+}
+
+ul {
+    list-style: "- ";
+    padding: 0;
+}
+
+div > p {
+    margin: 3px;
 }
