@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Components</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../Week_1/Day_4/assets/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark px-5">
+            <div class="container-fluid align-items-center">
+                <div class="collapse navbar-collapse" id="navbarExample01">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item mx-1">
+                        <a class="nav-link disabled text-white-50" aria-current="page" href="#">ProjectExercise #9</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-white-50" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link active bg-success text-white-50" href="#">About</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-white-50" href="#">Contact<span class="badge bg-secondary mx-2">3</span></a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <div class="dropdown">
+                            <button class="btn btn-dark bg-transparent dropdown-toggle text-white-50 align-self-center" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown button
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <form class="row g-3 pt-2">
+                    <div class="col-auto">
+                        <label for="inputEmail2" class="visually-hidden">Email</label>
+                        <input type="password" class="form-control" id="inputPassword2" placeholder="Email">
+                    </div>
+                    <div class="col-auto">
+                    <label for="inputPassword2" class="visually-hidden">Password</label>
+                    <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+                    </div>
+                    <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-3">Sign In</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </nav>
+    <!-- Navbar -->
+    </header>
+    <!-- Jumbotron -->
+    <div class="p-5 p-5 bg-light">
+        <h1 class="mb-3 px-5">Hello, world!</h1>
+        <h4 class="mb-3 px-5">This is Exercise #9. It includes a large callout called a jumbotron and three supporting pieces of content.</h4>
+        <a class="btn btn-primary mx-5" href="" role="button">Learn more</a>
+    </div>
+    <!-- Jumbotron -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                      <h2 class="card-title">Card title</h2>
+                      <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic modi suscipit sequi beatae odit ullam atque dicta doloribus eius iusto officiis harum, similique reiciendis obcaecati illo dolore eum asperiores labore.</p>
+                      <button type="button" class="btn btn-light border-secondary"><span class="fa fa-bar-chart me-2"></span>View details</button>
+                    </div>
+                  </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                      <h2 class="card-title">Card title</h2>
+                      <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic modi suscipit sequi beatae odit ullam atque dicta doloribus eius iusto officiis harum, similique reiciendis obcaecati illo dolore eum asperiores labore.</p>
+                      <button type="button" class="btn btn-light border-secondary"><span class="fa fa-mobile me-2"></span>View details</button>
+                    </div>
+                  </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                      <h2 class="card-title">Card title<span class="badge bg-success mx-2">New</span></h2>
+                      <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic modi suscipit sequi beatae odit ullam atque dicta doloribus eius iusto officiis harum, similique reiciendis obcaecati illo dolore eum asperiores labore.</p>
+                      <button type="button" class="btn btn-light border-secondary"><span class="fa fa-map-marker me-2"></span>View details</button>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

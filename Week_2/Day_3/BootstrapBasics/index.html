@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Basics</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container bg-danger border border-dark mt-3 mb-3">
+        <div class="row bg-success">
+            <div class="col">1</div>
+            <div class="col bg-secondary">2</div>
+            <div class="col">3</div>
+        </div>
+        <div class="row bg-warning">
+            <div class="col">1</div>
+            <div class="col bg-secondary">2</div>
+            <div class="col">3</div>
+        </div>
+    </div>
+    <div class="container bg-danger border border-dark mb-3">
+        <div class="row">
+          <div class="col-md-4 offset-1 bg-success">1</div>
+          <div class="col-md-4 offset-md-4 bg-warning">2</div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 offset-md-3 bg-primary">3</div>
+          <div class="col-md-3 offset-md-3 bg-secondary">4</div>
+        </div>
+      </div>
+      <div class="row bg-light">Without container 1
+        <div class="col-md-3"></div>
+        <div class="col-md-3"></div>
+      </div>
+      <div class="row bg-dark">Without container 2
+        <div class="col-md-3"></div>
+        <div class="col-md-3"></div>
+      </div>
+      <div class="container mt-3 mb-3">
+          <div class="col-2 bg-danger">Without row 1</div>
+          <div class="col-2 bg-info">Without row 2</div>
+      </div>
+      <div class="container-sm container-md container-lg container-xl">
+          <div class="row bg-success">
+              <div class="col-sm-3 col-md-6 col-lg-9 col-xl-12 justify-content-center flex-wrap pe-auto">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident sequi recusandae temporibus repudiandae quibusdam nam ab vel? Mollitia expedita consequatur nihil explicabo eaque, excepturi rerum saepe aperiam assumenda aspernatur repellendus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem quod beatae dolore ipsa, alias aliquam repellat minus fugiat esse enim mollitia non facilis nobis eos eum ipsam? Culpa, ducimus? Quaerat.
+              </div>
+          </div>
+          <div class="row bg-danger"></div>
+      </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
