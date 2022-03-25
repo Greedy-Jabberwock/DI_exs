@@ -1,0 +1,23 @@
+a {
+    font-size: 1.5vw;
+}
+
+nav > a.nav-item:hover {
+    border: 3px solid cadetblue;
+}
+
+.card > i.fs-1 {
+    font-size: 6.5rem !important;
+}
+
+div.card {
+    background-color: #457fb1 !important;
+}
+
+.btn-warning {
+    background-color: darkkhaki;
+}
+
+.btn-warning:hover {
+    background-color: rgb(230, 216, 34);
+}

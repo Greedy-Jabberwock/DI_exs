@@ -1,0 +1,22 @@
+main {
+    background-image: url(./assets/work.jpg);
+    background-size: cover;
+    background-position: -40vh;
+}
+
+a:hover {
+    border-bottom: 2px solid greenyellow;
+}
+
+h1 + div {
+    margin-bottom: 10vh !important;
+}
+
+col > div.card {
+    min-height: 19vh !important;
+}
+
+.to-center {
+    padding: 2vh 0;
+    text-align: center;
+}

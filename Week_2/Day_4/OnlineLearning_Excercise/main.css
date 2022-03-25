@@ -1,0 +1,15 @@
+body {
+    font-family: 'Red Hat Mono', monospace !important;
+    font-family: 'Sansita Swashed', cursive !important;
+    font-family: 'Work Sans', sans-serif !important;
+}
+
+header {
+    height: 100vh;
+    background-image: url(./assets/bg-laptop.jpg);
+    background-size: cover;
+}
+
+.row {
+    margin: 10vh 0;
+}
