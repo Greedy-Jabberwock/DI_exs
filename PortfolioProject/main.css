@@ -16,7 +16,7 @@ header {
 }
 
 .header-bg {
-    background-image: url(./portfolio_setup/laptop.png);
+    background-image: url(https://previews.123rf.com/images/chatree12/chatree121905/chatree12190500040/123402116-laptop-background-workspace-with-laptop-computer-office-supplies-gadget-at-home-or-studio-office-des.jpg);
     background-size: cover;
 }
 
@@ -34,4 +34,8 @@ div.card.mb-3 {
 
 footer > form > .footer-button {
     width: 100% !important;
+}
+
+.team-img {
+    height: auto !important;
 }
