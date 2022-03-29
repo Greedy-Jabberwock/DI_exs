@@ -5,23 +5,35 @@ console.log("\n---EXERCISE 1: YOUR FAVORITE FOOD---\n\n");
 let favoriteFood = "jambalaya";
 let favoriteMeal = 'dinner';
 let result = `I eat ${favoriteFood} at every ${favoriteMeal}.`;
+
 console.log(result + '\n\n')
 
 //-------------------EXERCISE 2: SERIES-------------------------------------
 
-console.log("\n---EXERCISE 2: SERIES---\n\n");
+    console.log("\n---EXERCISE 2: SERIES---\n\n");
+
+//-----------Part I-------------
 
 let myWatchedSeries = ["black mirror", "money heist", "the big bang theory"];
 let myWatchedSeriesLength = myWatchedSeries.length;
-let myWatchedSeriesSentence = myWatchedSeries.slice(0, myWatchedSeries.length-1).join(", ")
-    .concat(", and " + myWatchedSeries[myWatchedSeries.length-1]);
+let myWatchedSeriesSentence = myWatchedSeries.slice(0, myWatchedSeriesLength-1).join(", ")
+    .concat(", and " + myWatchedSeries[myWatchedSeriesLength-1]);
+
 console.log(`I watched ${myWatchedSeriesLength} series: ${myWatchedSeriesSentence}`);
+
+//-----------Part II-------------
+
 myWatchedSeries.splice(myWatchedSeries.indexOf("the big bang theory"), 1, "the friends");
+
 myWatchedSeries.push("american history of horrors");
+
 myWatchedSeries.unshift("castle-rock");
-myWatchedSeries.splice(1,1);
+
+let blackMirrorIndex = myWatchedSeries.indexOf("black mirror");
+myWatchedSeries.splice(blackMirrorIndex,1);
+
 console.log(myWatchedSeries[1][2]);
-console.log(myWatchedSeries);
+console.log(myWatchedSeries.toString());
 
 //-------------------EXERCISE 3: THE TEMPERATURE CONVERTER------------------
 

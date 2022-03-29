@@ -20,10 +20,12 @@ console.log(result);
 //--------------------EXERCISE 3:--------------------
 
 console.log("=============\nExercise 2: Calculator\n============="); 
+
 let num1 = Number(prompt("Enter first number: "));
 let sign = prompt('Enter the sign for calculation (+, -, /, *, ^)')
 let num2 = Number(prompt("Enter second number: "));
 let total;
+
 switch (sign) {
     case "+":
         total = num1 + num2;
