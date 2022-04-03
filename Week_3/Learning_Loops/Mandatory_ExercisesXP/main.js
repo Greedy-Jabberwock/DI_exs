@@ -1,6 +1,6 @@
 //--------------------EXERCISE 1:--------------------
 
-console.log("=============\nExercise 1: List Of People\n============="); 
+console.log("=============\nExercise 1: List Of People\n=============");
 
 console.log("------\nPart I\n------");
 
@@ -17,15 +17,18 @@ console.log("\nChange 'James' to 'Jason': " + people.toString());
 people.push("Vitalii");
 console.log("\nAdding my name to the end of the array: " + people.toString());
 
-console.log("Finding index of 'Mary': " + people.indexOf("Mary"));
+let maryIndex = people.indexOf("Mary");
+console.log("Finding index of 'Mary': " + maryIndex);
 
-let slisedArray = people.slice(1, people.length - 1);
-console.log("\nCopy array without 'Mary' and my name: " + slisedArray.toString());
+let VitaliiIndex = people.indexOf("Vitalii");
+let slisedArray = people.slice(0, maryIndex).concat(people.slice(maryIndex + 1, VitaliiIndex)).concat(people.slice(VitaliiIndex + 1));
+let stringArray = slisedArray.join(", ");
+console.log("\nCopy array without 'Mary' and my name: " + stringArray);
 
 console.log("\nFinding index of 'Foo': " + slisedArray.indexOf("Foo"));
 console.log("It returned -1 because there is no such element in the array.");
 
-let last = slisedArray[slisedArray.length - 1];
+let last = slisedArray[1];
 console.log("\nLast element of the slicedArray array: " + last);
 console.log("Last element of the array has a value 'arrayLength - 1'");
 
@@ -43,9 +46,9 @@ x = 0;
 do {
     console.log(people[x]);
     x++;
-} 
+}
 while (x != people.indexOf("Jason") + 1) {
-    
+
 }
 
 //--------------------EXERCISE 2:--------------------
@@ -64,7 +67,7 @@ console.log("\nSecond colors array(with suffixes): ");
 let suffixes = ['st', 'nd', 'rd', 'th'];
 for (x in colors) {
     let currentNumber = Number(x) + 1;
-    let currentSuffix = x > 2 ? suffixes[suffixes.length-1] : suffixes[x];
+    let currentSuffix = x > 2 ? suffixes[suffixes.length - 1] : suffixes[x];
     console.log(`My ${currentNumber}${currentSuffix} choice is ${colors[x]}`);
 }
 
@@ -73,13 +76,13 @@ for (x in colors) {
 let marker = true;
 let userInput = Number(prompt("Enter the number:"));
 
-while(marker) {
+while (marker) {
     if (!isNaN(userInput)) {
         if (userInput < 10) {
             userInput = Number(prompt("Enter the number:"));
         }
         else {
-            break;
+            marker = false;
         }
     }
     else {
@@ -92,18 +95,18 @@ while(marker) {
 console.log("=============\nExercise 4 : Building Management\n=============");
 
 let building = {
-    numberOfFloors : 4,
-    numberOfAptByFloor : {
-        firstFloor : 3,
-        secondFloor : 4,
-        thirdFloor : 9,
-        fourthFloor : 2,
+    numberOfFloors: 4,
+    numberOfAptByFloor: {
+        firstFloor: 3,
+        secondFloor: 4,
+        thirdFloor: 9,
+        fourthFloor: 2,
     },
-    nameOfTenants : ["Sarah", "Dan", "David"],
-    numberOfRoomsAndRent:  {
+    nameOfTenants: ["Sarah", "Dan", "David"],
+    numberOfRoomsAndRent: {
         sarah: [3, 990],
-        dan :  [4, 1000],
-        david : [1, 500],
+        dan: [4, 1000],
+        david: [1, 500],
     },
 }
 
@@ -114,7 +117,7 @@ console.log(`\nNumber of apartments on floors 1 and 3: ${firstAndThirdFloors}`);
 
 let secondTenant = building.nameOfTenants[1];
 let secondTenantLower = secondTenant.toLowerCase();
-let secondTenantRent = building.numberOfRoomsAndRent.dan[0];
+let secondTenantRent = building.numberOfRoomsAndRent[secondTenantLower][0];
 
 console.log(`\nName of the second tenant: ${secondTenant}
 Number of his rooms: ${secondTenantRent}`)
@@ -155,7 +158,7 @@ let details = {
     my: 'name',
     is: 'Rudolf',
     the: 'raindeer'
-  }
+}
 let result = "";
 
 for (x in details) {
