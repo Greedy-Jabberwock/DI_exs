@@ -25,7 +25,8 @@ console.log("=============\nExercise 2: Tips\n=============");
 
 function calculateTip() {
     let bill = Number(prompt("Enter the amount: "));
-    if (!isNaN(bill)) {
+    if (!isNaN(bill) && bill > 0) {
+        console.log(`John Daw paid ${bill}$`);
         let currentTip;
         switch (true) {
             case bill > 200:
@@ -39,14 +40,15 @@ function calculateTip() {
                 break;
         }
         bill += bill / 100 * currentTip;
-        console.log(bill);
+        console.log(`Current tip: ${currentTip}%`);
+        console.log(`Total amount: ${bill}$`);
     }
     else {
         calculateTip()
     }
 }
 
-//calculateTip();
+calculateTip();
 
 //--------------------EXERCISE 3:--------------------
 
@@ -99,7 +101,7 @@ let totalAmount = 0;
 
 function myBill() {
     shoppingList.forEach(isInStock);
-    shoppingList.forEach(calculatePrice);
+    shoppingList.forEach((item) => totalAmount += prices[item]);
     console.log(`Actual shopping list: ${shoppingList}`)
     console.log(`Total amount: ${totalAmount}.`)
 }
@@ -114,10 +116,6 @@ function isInStock(item) {
         let notInStock = shoppingList.indexOf(item);
         shoppingList.splice(notInStock, 1);
     }
-}
-
-function calculatePrice(item) {
-    totalAmount += prices[item];
 }
 
 //_____________________MAIN___________________________
@@ -185,7 +183,6 @@ function hotelCost(numberOfNights) {
     else {
         let costPerNight = 140;
         let result = numberOfNights * costPerNight;
-            console.log(`HOTEL: ${costPerNight} * ${numberOfNights} = ${result}`);
         return result;
     }
 }
@@ -194,18 +191,15 @@ function planeRideCost(destination) {
     const flyPrices = [183, 220, 300];
     
     if (typeof destination != "string" || destination == '') {
-        planeRideCost();
+        return 0;
     }
     else {
         switch (destination.toLowerCase()) {
             case "london":
-                    console.log(`PLANE: ${destination} = ${flyPrices[0]}`);
                 return flyPrices[0];
             case 'paris':
-                    console.log(`PLANE: ${destination} = ${flyPrices[1]}`);
                 return flyPrices[1];
             default:
-                    console.log(`PLANE: ${destination} = ${flyPrices[2]}`);
                 return flyPrices[2];
         }
     }
@@ -213,7 +207,6 @@ function planeRideCost(destination) {
 
 function rentalCarCost(daysOfRent) {
     
-    console.log(daysOfRent);
     if (isNaN(daysOfRent) || daysOfRent < 0 || daysOfRent === undefined) {
         rentalCarCost();
         
@@ -222,7 +215,6 @@ function rentalCarCost(daysOfRent) {
         let rentCost = daysOfRent * 40;
         let discount = rentCost / 100 * 5;
         let result = daysOfRent > 10 ? rentCost - discount : rentCost;
-        console.log(`CAR: ${daysOfRent} * 40 = ${result}`);
 
         return result;
     }
