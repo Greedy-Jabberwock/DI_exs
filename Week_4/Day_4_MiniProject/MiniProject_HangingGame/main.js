@@ -39,7 +39,7 @@ let validationCheck = (playerNumber) => {
         case 1: 
             let userInput = prompt("Player 1: give me a word for player2.").toLowerCase();
             let pattern = /^[a-z]+$/;
-            if (userInput.match(pattern) != null) {
+            if (userInput.match(pattern) != null && userInput.length >= 8) {
                 return userInput;
             } else {
                 validationCheck(1);
