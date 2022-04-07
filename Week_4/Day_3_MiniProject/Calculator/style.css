@@ -1,0 +1,28 @@
+.container {
+    display: inline-block;
+    width: 25%;
+}
+
+p {
+    width: 22vw;
+    height:8vh;
+    font-size: 6vh;
+    border: 1px solid black;
+    margin: 2px 0px;
+    padding: 0px 10px 0px 0px;
+}
+
+.buttons {
+    width: 100%;
+}
+
+button {
+    margin: 3px 0px 0px 0px;
+    padding: 0;
+    width:5.5vw;
+    height:8vh;
+}
+
+.bottom {
+    width: 11.35vw;
+}
