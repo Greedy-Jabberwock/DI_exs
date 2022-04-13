@@ -1,51 +1,63 @@
 let listsTasks = [];
+let index = 0;
 
-function addTask(e) {
+let addTask = (e) => {
     e.preventDefault();
-    let value = this.elements[0].value;
-    let pattern = /^\S+/
-    if (value != '' && value.match(pattern) != null) {
-        let id = saveElement(value);
-        this.elements[0].value = '';
-        createTaskElement();
+    let inputText = document.forms[0].elements[0].value;
+    let indexId = 'index'.concat(String(index));
+    let pattern = /^\S+/;
+    if (inputText != '' && inputText.match(pattern) != null) {
+        let task = {
+            id: indexId,
+            text: inputText,
+            done: false,
+        }
+        listsTasks.push(task);
+        index++;
+        createElements();
     } else {
-        alert('Enter something.');
-        this.elements[0].value = '';
+        alert('Task cannot be empty.')
+        return false;
     }
 };
 
-function createTaskElement(value) {
+let createElements = () => {
     let div = document.querySelector('.listTasks');
+    div.innerHTML = '';
+    listsTasks.forEach(item => {
+        let checked = item.done ? ' checked' : '';
+        let cross = item.done ? ' class="redcross"' : '';
+        let taskEl = `<div data-task-id='${item.id}'><i class='fa fa-ban'></i><input type='checkbox'${checked}><span${cross}>${item.text}</span></div>`
+        div.innerHTML += taskEl;
 
-    let container = document.createElement('div');
-    container.classList.add('flex');
-
-    let span = document.createElement('span');
-    span.classList.add('fa', 'fa-ban');
-    span.classList.add('margin');
-
-    let checkbox = document.createElement('input');
-    checkbox.setAttribute('type', 'checkbox');
-    checkbox.classList.add('margin');
-    checkbox.addEventListener('click', toggleStyle);
-
-    let p = document.createElement('p');
-    p.style.display = 'inline-block';
-    p.classList.add('margin');
-    p.innerHTML = value;
-
-    container.append(span);
-    container.append(checkbox);
-    container.append(p);
-    div.appendChild(container);
-}
-
-function toggleStyle() {
-    this.nextSibling.classList.toggle('redcross');
+        document.forms[0].elements[0].value = '';
+    })
+    let checkboxes = div.querySelectorAll('input');
+    checkboxes.forEach((item, index) => {
+        let tasksSpan = document.querySelectorAll('span');
+        item.addEventListener('click', () => {
+            if (item.checked) {
+                listsTasks[index].done = true;
+                tasksSpan[index].classList.add('redcross');
+            } else {
+                listsTasks[index].done = false;
+                tasksSpan[index].classList.remove('redcross');
+            };
+        });
+    })
+    let tasks = document.querySelectorAll('i');
+    tasks.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            listsTasks.splice(index, 1);
+            createElements();
+        })
+    })
 };
 
-function saveElement(value) {
-
+let getTaskList = () => {
+    let list = document.querySelectorAll('.listTasks > div');
+    return list;
 }
+
 
 document.forms[0].addEventListener('submit', addTask);
