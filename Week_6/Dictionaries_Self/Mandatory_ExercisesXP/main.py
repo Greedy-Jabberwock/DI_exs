@@ -1,6 +1,3 @@
-from dis import dis
-
-
 border = '=========================='
 
 # =========================EXERCISE 1: Convert Lists Into Dictionaries=========================
