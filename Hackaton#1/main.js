@@ -23,16 +23,18 @@ let hideCode = (code) => {
 }
 
 let addNumber = (someNumber) => {
-    let last = spansToGuess[spansToGuess.length - 1]
-    if (! last.textContent) {
-        for (let i = 0; i < spansToGuess.length; i++) {
-            if (!spansToGuess[i].textContent) {
-                spansToGuess[i].innerHTML += someNumber
-                break
+    if (!lose) {
+        let last = spansToGuess[spansToGuess.length - 1]
+        if (! last.textContent) {
+            for (let i = 0; i < spansToGuess.length; i++) {
+                if (!spansToGuess[i].textContent) {
+                    spansToGuess[i].innerHTML += someNumber
+                    break
+                }
             }
+        } else {
+            fullSet = true;
         }
-    } else {
-        fullSet = true;
     }
 }
 
@@ -64,13 +66,13 @@ let checkResult = () => {
         if (guessed == 4) {
             alert('You win!')
             score += 1;
-            document.getElementById('score').textContent = score;
+            // document.getElementById('score').textContent = score;
         } else {
             attempts -= 1;
             document.getElementById('attempts').textContent = attempts;
             if (attempts == 0) {
-                alert('You lose.')
-                attempts = 0
+                alert('You lose.');
+                lose = true;
             }
         }
     }
@@ -80,4 +82,4 @@ hiddenCode = hideCode(createCode());
 
 document.getElementById('attempts').textContent = attempts;
 
-document.getElementById('score').textContent = score;
+// document.getElementById('score').textContent = score;
