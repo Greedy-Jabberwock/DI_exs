@@ -1,7 +1,7 @@
 from random import randint
 
 border = '========================================'
-empty_cell = '   '
+empty_cell = ' '
 cells = [
     [empty_cell, empty_cell, empty_cell],
     [empty_cell, empty_cell, empty_cell],
@@ -52,8 +52,8 @@ def get_player_coordinates():
     marker = True
     print('It\'s your turn now!')
     while marker:
-        player_x, player_y = input('Input x and y coordinates, separated by comma\n').strip().split(',')
         try:
+            player_x, player_y = input('Input x and y coordinates, separated by comma\n').strip().split(',')
             player_x = int(player_x) - 1
             player_y = int(player_y) - 1
             if 0 <= player_x <= 2 and 0 <= player_y <= 2:
@@ -74,7 +74,6 @@ def get_player_coordinates():
 
 
 def get_ai_coordinates():
-    print('AI turns')
     ai_x = randint(0, 2)
     ai_y = randint(0, 2)
     if cells[ai_y][ai_x] == empty_cell:
@@ -98,20 +97,16 @@ def check_win():
             if element != empty_cell:
                 empty_cell_counter += 1
     if cells[0][0] == cells[1][1] == cells[2][2] and cells[0][0] != empty_cell:
-        print('\\ condition')
         print(f'{cells[0][0]}{winner_msg}')
         return True
     if cells[0][2] == cells[1][1] == cells[2][0] and cells[0][2] != empty_cell:
         print(f'{cells[0][2]}{winner_msg}')
-        print('/ condition')
         return True
     for column in range(len(cells)):
         if cells[column].count('X') == 3:
-            print('- X condition')
             print(f'X {winner_msg}')
             return True
         if cells[column].count('O') == 3:
-            print('- O condition')
             print(f'O {winner_msg}')
             return True
         count_x = 0
@@ -122,11 +117,9 @@ def check_win():
             elif cells[row][column] == 'O':
                 count_o += 1
         if count_x == 3:
-            print('| X condition')
             print(f'X {winner_msg}')
             return True
         if count_o == 3:
-            print('| O condition')
             print(f'O {winner_msg}')
             return True
     else:
