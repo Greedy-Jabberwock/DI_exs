@@ -4,4 +4,7 @@ class Node:
         self.left = None
         self.right = None
 
+    def search(self):
+        pass
+
     

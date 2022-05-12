@@ -42,7 +42,7 @@ class City:
                     citizens_count += 1
                     total_citizens_ages += inhabitant.age
         average = round(total_citizens_ages / citizens_count)
-        print(f'In {self.name} there are {buildings_count} buildings\n'
+        print(f'In {self.name} there are {buildings_count} buildings.\n'
               f'Average age of citizens is {average} age.')
 
 
@@ -55,10 +55,6 @@ def main():
     for building in rostov.buildings:
         for _ in range(randint(2, 10)):
             building.inhabitants.append(Human('Some name', randint(12, 90)))
-
-    for building in rostov.buildings:
-        for citizen in building.inhabitants:
-            print(citizen.age)
 
     rostov.info(address)
 
