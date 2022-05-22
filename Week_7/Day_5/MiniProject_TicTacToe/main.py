@@ -40,10 +40,7 @@ def print_board():
 
 
 def get_coordinates(player):
-    if player['human']:
-        x, y = get_player_coordinates()
-    else:
-        x, y = get_ai_coordinates()
+    x, y = get_player_coordinates() if player['human'] else get_ai_coordinates()
     player['coordinates']['x'] = x
     player['coordinates']['y'] = y
 
@@ -69,7 +66,6 @@ def get_player_coordinates():
         except ValueError:
             print('One or both of values are invalid.')
             continue
-        print('get_player_coordinates works')
         return player_x, player_y
 
 
@@ -152,7 +148,7 @@ def main():
     second = players['second_player']
     print_board()
 
-    while True:
+    while not check_win():
         get_coordinates(first)
         print('First player is turning')
         make_turn(first)
@@ -164,8 +160,6 @@ def main():
         print('Second player is making a turn.')
         make_turn(second)
         print_board()
-        if check_win():
-            break
 
 
 main()
