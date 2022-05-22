@@ -1,12 +1,12 @@
 class Farm():
-    animals_dict = {}
+    animals_dict = {} # create it inside the init: self.animals_dict = {} because it's part from the class
     
     def __init__(self, name):
         self.name = name
     
     def add_animal(self, animal_type, count=1):
         animals = self.animals_dict
-        if animal_type in animals.keys():
+        if animal_type in animals.keys(): # you can do instead: if animal_type in animals
             animals[animal_type] += count
         else:
             animals[animal_type] = count
@@ -14,7 +14,7 @@ class Farm():
     def get_animal_types(self):
         return [x for x in self.animals_dict.keys()]
 
-    def get_info(self):
+    def get_info(self): # please rerwite this function it's too complicated 
         header = "Old McDonald's farm: \n"
         edges = ('*' * 30) + '\n'
         info = ''
@@ -37,7 +37,7 @@ class Farm():
 
         return info
 
-    def get_short_info(self):
+    def get_short_info(self):  # please rerwite this function it's too complicated 
         types = self.get_animal_types()
         last_el = types[len(types) - 1]
         result = f"{self.name}'s farm has "
