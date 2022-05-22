@@ -12,7 +12,7 @@ class Farm():
             animals[animal_type] = count
 
     def get_animal_types(self):
-        return [x for x in self.animals_dict.keys()]
+        return [x for x in self.animals_dict.keys()] # why you do this and not just self.animals_dict.keys()
 
     def get_info(self): # please rerwite this function it's too complicated 
         header = "Old McDonald's farm: \n"
