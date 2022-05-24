@@ -1,23 +1,31 @@
 from datetime import datetime
 
+
+def check_instance(cls, other):
+    """Checks instance of class with given class, if True returns instance, else raise TypeError."""
+    if isinstance(cls, other):
+        return cls
+    else:
+        raise TypeError(f'Value must be {other.__name__()} class.')
+
+
 class Airline:
     """
     Airline just represent a flight company and store planes of this company
     """
-    def __init__(self, name):
-        print('\nAirline initialized.')
-        self.name = name
-        self.id = self.name[:2].upper()
-        self.planes = []
-        print(self)
 
-    def __repr__(self):
-        return f'|||Airline {self.name}, ' \
-               f'ID: {self.id}, ' \
-               f'Planes: {self.planes}|||'
+    def __init__(self, id, name):
+        self.id = check_instance(id, str)
+        self.name = check_instance(name, str)
+        self.planes = []
 
     def __str__(self):
         return f'Airline {self.name}'
+
+    def __repr__(self):
+        return f"<Airline {self.name}:\n" \
+               f"ID: {self.id}, " \
+               f"Planes: {[str(p) for p in self.planes]}>"
 
 
 class Airplane:
@@ -25,107 +33,98 @@ class Airplane:
     Airplane represent the airplane. It stores current location of airplane,
     company and list of the next flights
     """
-    def __init__(self, id, current_location, company):
-        print('\nAirplane initialized.')
-        self.id = id
-        self.current_location = current_location
-        self.company = company
-        self.company.planes.append(self)
-        self.current_location.planes.append(self)
-        self.next_flights = []
-        print(self)
 
-    def __repr__(self):
-        return f'\t|||Airplane {self.id}, ' \
-               f'curr_loc: {self.current_location}, ' \
-               f'company: {self.company}, ' \
-               f'next_flights: {self.next_flights} |||\t'
+    def __init__(self, id, current_location, company):
+        self.id = check_instance(id, int)
+        self.current_location = check_instance(current_location, Airport)
+        self.current_location.planes.append(self)
+        self.company = check_instance(company, Airline)
+        self.company.planes.append(self)
+        self.next_flights = []
 
     def __str__(self):
         return f'Airplane {self.id}'
 
+    def __repr__(self):
+        return f'Airplane {self.id}:\n' \
+               f'Location: {self.current_location}, ' \
+               f'Company: {self.company}, ' \
+               f'Flights: {[str(f) for f in self.next_flights]}'
+
     def fly(self, destination):
         """
-        Method needs to change current location of airplane, using take_off
-        and land methods of Flight class
+        Method changes the current location of airplane,
+        calling methods take_off() and land() from Fight class
         """
-        print(f'Airplane {self.id} fly method.')
-        if len(self.next_flights) > 0:
-            flight = self.next_flights.pop(0)
-            if flight.destination == destination:
-                flight.take_off()
-                flight.land()
-                print(f'Airplane {self.id} fly method ends successfully.')
-            else:
-                print(f'Airplane {self.id} fly method ends.')
-                print('There is no such destination in this flight.')
+        next_flight = self.next_flights[0]
+        if next_flight.destination == destination:
+            self.next_flights.pop(0)
+            next_flight.take_off()
+            next_flight.land()
         else:
-            print(f'Airplane {self.id} fly method ends.')
-            print('There is no scheduled flights for this plane.')
+            print("There is no such flight in the schedule.")
 
     def location_on_date(self, date):
         """
-        Method returns the location where the airplane will be on a given date
+        Method returns where the airplane will be on given date.
         """
-        print(f'Airplane {self.id} location_on_day method starts.')
-        filter_result = filter(lambda flight: flight.date == date, self.next_flights)
-        result = []
-        for _flight in filter_result:
-            result.append(_flight.origin)
-            print(f'Airplane {self.id} location_on_day method ends.\n'
-                  f'Result: {result}')
-        return result
+        if len(self.next_flights) == 0:
+            return self.current_location
+        for flight in self.next_flights:
+            if flight.date == date:
+                return flight.origin
+        else:
+            return None
 
     def available_on_date(self, date, location):
         """
-        Method returns True, if Airplane has no flights on a given date, else False
+        Returns True if the plane can fly from given location on this day
+        (airplane is in this location and have no flights on this day)
         """
-        print(f'Airplane {self.id} available_on_day method starts.')
-        if len(self.next_flights) == 0 and self.current_location == location:
-            print(f'Airplane {self.id} available_on_day method ends.'
-                  f'Return True (list is empty and current.location == location)')
-            return True
         for flight in self.next_flights:
-            pass
+            if flight.date == date:
+                return False
+        if self.location_on_date(date) == location:
+            return True
+        else:
+            return False
 
 
 class Flight:
     """
     This class represents information about flight. It's methods just change data in other classes.
     """
-    def __init__(self, date, destination, origin, plane):
-        print('\nFlight initialized.')
-        self.date = date
-        self.destination = destination
-        self.origin = origin
-        self.plane = plane
-        self.id = f'{destination.city}-{self.plane.company.id}-{date.year[1:4]}' \
-                  f'{date.month}{date.day}'
-        print(self)
 
-    def __repr__(self):
-        return f'|||\tFlight: Date: {self.date}, Destination: {self.destination}, ' \
-               f'Origin: {self.origin}, Plane: {self.plane}, ID: {self.id}|||\t'
+    def __init__(self, date, destination, origin, plane):
+        self.date = check_instance(date, datetime)
+        self.destination = check_instance(destination, Airport)
+        self.origin = check_instance(origin, Airport)
+        self.plane = check_instance(plane, Airplane)
+        self.id = f"{destination.city}-{plane.company.id}-{date.strftime('%Y/%m/%d')}"
 
     def __str__(self):
-        return f'Flight {self.id}'
+        return f'{self.id}'
+
+    def __repr__(self):
+        return f'\nFlight {self.id}: ' \
+               f'Plane: {self.plane},' \
+               f'Date: {self.date},' \
+               f'Origin: {self.origin},' \
+               f'Destination: {self.destination}\n'
 
     def take_off(self):
-        """
-        Deletes plane from origin Airport list of planes
-        """
-        print(f'Flight {self.id} take_off method starts.')
-        index_in_list = self.origin.planes.index(self.plane)
-        self.origin.planes.pop(index_in_list)
-        print(f'Flight {self.id} available_on_day method ends.')
+        """Remove current plane from origin Airport"""
+        plane_index = self.origin.planes.index(self.plane)
+        self.origin.planes.pop(plane_index)
+        flight_index = self.origin.scheduled_departures.index(self)
+        self.origin.scheduled_departures.pop(flight_index)
 
     def land(self):
-        """
-        Add plane to list in destination Airport
-        """
-        print(f'Flight {self.id} land method starts.')
+        """Append current plane to the Airport scheduled arrivals"""
         self.destination.planes.append(self.plane)
-        print(f'Flight {self.id} land method ends.')
+        flight_index = self.destination.scheduled_arrivals.index(self)
+        self.destination.scheduled_arrivals.pop(flight_index)
+        self.plane.current_location = self.destination
 
 
 class Airport:
@@ -133,60 +132,93 @@ class Airport:
     Class represents airport in some city. It stores planes, which now at
     the airport and lists of departures and arrivals.
     """
+
     def __init__(self, city):
-        print('\nAirport initialized')
-        self.city = city
+        self.city = check_instance(city, str)
         self.planes = []
         self.scheduled_departures = []
         self.scheduled_arrivals = []
-        print(self)
-
-    def __repr__(self):
-        return f'|||\tAirport in {self.city}, ' \
-               f'Planes: {self.planes}, ' \
-               f'Scheduled departures: {self.scheduled_departures}, ' \
-               f'Scheduled arrivals: {self.scheduled_arrivals}|||\t'
 
     def __str__(self):
-        return f'Airport in {self.city}'
+        return f'Airport {self.city}'
 
-    def schedule_flight(self, destination, datetime):
-        """
-        Finds an available airplane from an airline and schedules the airplane
-        for the flight.
-        """
-        print(f'Airport {self.city} schedule_flight method starts.')
-        for plane in self.planes:
-            if plane.available_on_date(datetime, destination):
-                flight = Flight(datetime, destination, self, plane)
-                self.scheduled_departures.append(flight)
-                destination.scheduled_arrivals.append(flight)
-        print(f'Airport {self.city} schedule_flight method ends.')
+    def __repr__(self):
+        return f'\nAirport {self.city}\n' \
+               f'Planes: {[str(plane) for plane in self.planes]}\n' \
+               f'Arrivals: {[str(flight) for flight in self.scheduled_arrivals]}\n' \
+               f'Departures: {[str(flight) for flight in self.scheduled_departures]}\n'
+
+    def schedule_flight(self, destination, date):
+        """Finds available airplane in this Airport, schedules Airplane for the flight"""
+        if self.planes != 0:
+            for plane in self.planes:
+                if plane.available_on_date(date, self):
+                    flight = Flight(date, destination, self, plane)
+                    sort_func = lambda x: x.date
+                    self.scheduled_departures.append(flight)
+                    self.scheduled_departures.sort(key=sort_func)
+                    plane.next_flights.append(flight)
+                    plane.next_flights.sort(key=sort_func)
+                    destination.scheduled_arrivals.append(flight)
+                    destination.scheduled_arrivals.sort(key=sort_func)
+                    break
+                else:
+                    continue
+        else:
+            print('There are no airplanes in this airport.')
 
     def info(self, start_date, end_date):
-        """
-        Prints info about flights from the start date to the end date
-        """
-        print(f'Airport {self.city} info method starts.')
-        filtered_result = filter(lambda flight:
-                                 start_date <= flight.date <= end_date)
-        for result in filtered_result:
-            print(result if len(filtered_result) > 0 else 'No flights in this dates.')
-        print(f'Airport {self.city} info method ends.')
+        """Displays every scheduled flight from start_date to end_date"""
+        filter_flight = lambda x: start_date <= x.date <= end_date
+        filtered_departures = list(filter(filter_flight, self.scheduled_departures))
+        filtered_arrivals = list(filter(filter_flight, self.scheduled_arrivals))
+        print('--------------------------------------------------------')
+        print(self.city)
+        print(f'Departures:\n{[x.id for x in filtered_departures]}')
+        print(f'Arrivals:\n{[x.id for x in filtered_arrivals]}')
+        print('--------------------------------------------------------')
 
 
 def main():
+    el_al = Airline('EL', 'El-Al')
+    ren_air = Airline('RA', 'RenAir')
+    aeroflot = Airline('AF', 'Aeroflot')
+
     winna = Airport('Winna')
-    moscow = Airport('Moscow')
+    vnukovo = Airport('Vnukovo')
+    ben_gurion = Airport('Ben_Gurion')
     istanbul = Airport('Istanbul')
 
-    el_al = Airline('El-Al')
-    renair = Airline('RenAir')
+    el_1 = Airplane(5098, istanbul, el_al)
+    el_2 = Airplane(8903, vnukovo, el_al)
+    air_1 = Airplane(234, winna, ren_air)
+    air_2 = Airplane(222, ben_gurion, ren_air)
+    aero_1 = Airplane(12455, vnukovo, aeroflot)
+    aero_2 = Airplane(12344, istanbul, aeroflot)
 
-    air1 = Airplane(234, winna, el_al)
-    air2 = Airplane(111, moscow, el_al)
+    _date = datetime(2022, 10, 12)
 
-    winna.schedule_flight(istanbul, datetime(2022, 5, 14))
+    vnukovo.schedule_flight(istanbul, _date)
+    vnukovo.schedule_flight(winna, _date)
+
+    istanbul.schedule_flight(ben_gurion, datetime(2022, 10, 15))
+    istanbul.schedule_flight(ben_gurion, datetime(2022, 10, 14))
+    istanbul.schedule_flight(ben_gurion, datetime(2022, 10, 16))
+
+    el_2.fly(istanbul)
+
+    istanbul.schedule_flight(ben_gurion, datetime(2022, 10, 11))
+    istanbul.schedule_flight(vnukovo, datetime(2023, 12, 1))
+
+    start_date = datetime(2021, 10, 12)
+    end_date = datetime(2023, 10, 12)
+    istanbul.info(start_date, end_date)
+    ben_gurion.info(start_date, end_date)
+
+    aero_2.fly(winna)
+
+    print(istanbul.__repr__())
+    print(el_1.__repr__())
 
 
 main()
