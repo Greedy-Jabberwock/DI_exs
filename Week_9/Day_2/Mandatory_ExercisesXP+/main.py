@@ -47,7 +47,6 @@ def main():
                           f'--------------------------------------------------\n'
             return result
 
-
     family = Family('Greenberg')
     family.born(name='Jake', age=0, gender='Male', is_child=True)
     print(family.print_family)
@@ -84,21 +83,25 @@ def main():
         @property
         def incredible_presentation(self):
             result = '\nFamily members:\n--------------------------------------------------\n'
+
             for member in self.members:
                 he_or_she = 'he' if member['gender'].lower() == 'male' else 'she'
                 child_str = 'is' if member['is_child'] else "is not"
-                inc_name = 'has no incredible name yet' if member['incredible_name'] is None else f'is a {member["incredible_name"]}'
+                inc_name = 'has no incredible name yet' if member['incredible_name'] is None \
+                    else f'is a {member["incredible_name"]}'
+
                 result += f'-\t{member["name"]} {self.last_name} is {member["age"]} years old. ' \
                           f'{he_or_she.title()} is a {member["gender"].lower()}, ' \
                           f'and {he_or_she} {child_str} a child.\n' \
                           f'\t{he_or_she.title()} {inc_name}. ' \
                           f'His power is {member["power"]}.\n' \
                           f'--------------------------------------------------\n'
+
             return result
 
     inc_family = TheIncredibles('Parr')
     print(inc_family.print_family)
-    inc_family.born(name="Jack_Jack", age=2, gender="Male", is_child=True, power='unknown', incredible_name=None)
+    inc_family.born(name="Jack-Jack", age=2, gender="Male", is_child=True, power='unknown', incredible_name=None)
     print(inc_family.print_family)
     print(inc_family.incredible_presentation)
 

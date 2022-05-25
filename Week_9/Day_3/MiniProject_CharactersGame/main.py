@@ -14,6 +14,7 @@ class Character:
         self.name = name
         self.life = 20
         self.attack = 10
+        self.class_name = self.__class__.__name__
 
     @staticmethod
     def is_alive(cls):
@@ -25,15 +26,22 @@ class Character:
 
     @staticmethod
     def already_dead(cls):
-        print(f'{cls.name} is dead.')
+        print(f'{cls.class_name} {cls.name} is dead.')
+
+    @staticmethod
+    def check_both_death(cls, other):
+        if not Character.is_alive(cls):
+            Character.already_dead(cls)
+            return False
+        elif not Character.is_alive(other):
+            Character.already_dead(other)
+            return False
+        else:
+            return True
 
     @decorate
     def basic_attack(self, other):
-        if not Character.is_alive(self):
-            print(f'{self.name} is dead.')
-        elif not Character.is_alive(other):
-            print(f'Stop it. {other.name} already dead.')
-        elif Character.is_alive(self) and Character.is_alive(other):
+        if Character.check_both_death(self, other):
             print(f'{self.name} attacks {other.name}, '
                   f'and deals {self.attack} damage')
             other.life -= self.attack
@@ -54,6 +62,8 @@ class Druid(Character):
     def shout(self):
         if Character.is_alive(self):
             print(f'{self.name}: "Sacrifice for the nature!"')
+        else:
+            Character.already_dead(self)
 
     @decorate
     def meditate(self):
@@ -62,19 +72,19 @@ class Druid(Character):
                   f'(Life increased by 10, attack decreased by 2.)')
             self.life += 10
             self.attack -= 2
+        else:
+            Character.already_dead(self)
 
     @decorate
     def animal_help(self):
         if Character.is_alive(self):
             print(f'Animals helps to {self.name}\n(Attack increased by 5)')
+        else:
+            Character.already_dead(self)
 
     @decorate
     def fight(self, other):
-        if not Character.is_alive(self):
-            print(f'{self.name} is dead.')
-        elif not Character.is_alive(other):
-            print(f'Stop it. {other.name} already dead.')
-        elif Character.is_alive(self) and Character.is_alive(other):
+        if Character.check_both_death(self, other):
             attack_power = round(0.75 * self.life + 0.75 * self.attack)
             print(f'{self.name} fights with {other.name} '
                   f'and deals {attack_power} damage!')
@@ -94,15 +104,14 @@ class Warrior(Character):
 
     @decorate
     def shout(self):
-        print(f'{self.name}: "For the glory! For the honor!"')
+        if Character.is_alive(self):
+            print(f'{self.name}: "For the glory! For the honor!"')
+        else:
+            print(f'{self.class_name} {self.name} is dead.')
 
     @decorate
     def brawl(self, other):
-        if not Character.is_alive(self):
-            print(f'{self.name} is dead.')
-        elif not Character.is_alive(other):
-            print(f'Stop it. {other.name} already dead.')
-        elif Character.is_alive(self) and Character.is_alive(other):
+        if Character.check_both_death(self, other):
             attack_power = self.attack * 2
             self.life += round(self.attack * 0.5)
             other.life -= attack_power
@@ -116,14 +125,12 @@ class Warrior(Character):
             print(f'{self.name} trains.\n(Attack and life increased by 2)')
             self.life += 2
             self.attack += 2
+        else:
+            print(f'{self.class_name} {self.name} is dead.')
 
     @decorate
     def roar(self, other):
-        if not Character.is_alive(self):
-            print(f'{self.name} is dead.')
-        elif not Character.is_alive(other):
-            print(f'Stop it. {other.name} already dead.')
-        elif Character.is_alive(self) and Character.is_alive(other):
+        if Character.check_both_death(self, other):
             print(f'{self.name} roars to {other.name} '
                   f'and decrease it\'s attack by 3')
             other.attack -= 3
@@ -143,14 +150,12 @@ class Mage(Character):
     def shout(self):
         if Character.is_alive(self):
             print(f'{self.name}: "Knowledge gives power. Always."')
+        else:
+            print(f'{self.class_name} {self.name} is dead.')
 
     @decorate
     def curse(self, other):
-        if not Character.is_alive(self):
-            print(f'{self.name} is dead.')
-        elif not Character.is_alive(other):
-            print(f'Stop it. {other.name} already dead.')
-        elif Character.is_alive(self) and Character.is_alive(other):
+        if Character.check_both_death(self, other):
             print(f'{self.name} curses {other.name} '
                   f'and decrease it\'s attack by 2.')
             other.attack -= 2
@@ -161,14 +166,12 @@ class Mage(Character):
             print(f'{self.name} summons the magic creature!\n'
                   f'(Attack increased by 3)')
             self.attack += 3
+        else:
+            Character.already_dead(self)
 
     @decorate
     def cast_spell(self, other):
-        if not Character.is_alive(self):
-            print(f'{self.name} is dead.')
-        elif not Character.is_alive(other):
-            print(f'Stop it. {other.name} already dead.')
-        elif Character.is_alive(self) and Character.is_alive(other):
+        if Character.check_both_death(self, other):
             cast_power = round(self.life / self.attack)
             print(f'{self.name} is casting the spell to attack {other.name}\n'
                   f'Spell deals {cast_power} damage!')
@@ -194,15 +197,18 @@ def main():
     warrior.roar(mage)
     warrior.train()
     druid.fight(warrior)
-    print(warrior)
     mage.curse(warrior)
     druid.animal_help()
     warrior.brawl(druid)
-    print(druid)
     warrior.brawl(druid)
     druid.meditate()
+    warrior.train()
+    mage.curse(warrior)
+    mage.basic_attack(warrior)
+    warrior.brawl(mage)
     print(druid)
     print(mage)
     print(warrior)
+
 
 main()

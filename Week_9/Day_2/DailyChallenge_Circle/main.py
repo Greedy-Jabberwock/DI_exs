@@ -34,10 +34,12 @@ class Circle:
         return True if self.radius == other.radius else False
 
     def __repr__(self):
-        return f'Circle with radius {self.radius}'
+        return f'Class {self.__class__.__name__}, ' \
+               f'radius: {self.radius}, ' \
+               f'diameter: {self.diameter}\n'
 
     def __str__(self):
-        return f'Circle with radius {self.radius}'
+        return f'{self.__class__.__name__} with radius {self.radius}'
 
 
 c1 = Circle(16)
@@ -45,7 +47,7 @@ c2 = Circle(5)
 c3 = Circle(1)
 print(c2 + c1)
 c2 += c3
-print(c2)
+print(str(c2))
 Circle.sort_circles()
 print(Circle.circles)
 print(c1.calculate_area())
