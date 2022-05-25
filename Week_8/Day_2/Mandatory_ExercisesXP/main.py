@@ -1,15 +1,12 @@
-from operator import le
-
-
 def print_header(exercise_name):
-    border = '-----------------------------------------------'
-    print(border)
+    print('-----------------------------------------------')
     print(f'Exercise {exercise_name}')
 
 
-#==================== EXERCISE 1: CATS ==========================
+# ==================== EXERCISE 1: CATS ==========================
 
 print_header('1: Cats')
+
 
 class Cat:
     def __init__(self, name, age):
@@ -18,6 +15,7 @@ class Cat:
 
 
 def determinate_oldest_cat(*cats_objects):
+    oldest = None
     largest_age = -1
     for cat in cats_objects:
         if cat.age > largest_age:
@@ -34,12 +32,12 @@ oldest_cat = determinate_oldest_cat(barsik, grumpy, ginger)
 
 print(f'The oldest cat is {oldest_cat.name}, and is {oldest_cat.age} years old.')
 
-
-#==================== EXERCISE 2 : Dogs ==========================
+# ==================== EXERCISE 2 : Dogs ==========================
 
 print_header('2 : Dogs')
 
-class Dog():
+
+class Dog:
     def __init__(self, dog_name, dog_height):
         self.name = dog_name.title()
         self.height = dog_height
@@ -64,34 +62,37 @@ print(str(sarahs_dog))
 sarahs_dog.bark()
 sarahs_dog.jump()
 
-who_bigger = davids_dog.name if davids_dog.height > sarahs_dog.height else sarahs_dog.heigth
+who_bigger = davids_dog.name if davids_dog.height > sarahs_dog.height else sarahs_dog.name
 print('Who is bigger? ', who_bigger)
 
-#==================== EXERCISE 3 : Who’s The Song Producer? ==========================
+# ==================== EXERCISE 3 : Who’s The Song Producer? ==========================
 
 print_header('3 : Who’s The Song Producer?')
 
-class Song():
-    def __init__(self, lyrics = []):
+
+class Song:
+    def __init__(self, lyrics):
         self.lines = lyrics
-    
+
     def sing_me_a_song(self):
         print()
         for line in self.lines:
             print(line)
 
 
-stairway= Song(["There’s a lady who's sure","all that glitters is gold", "and she’s buying a stairway to heaven"])
+stairway = Song(["There’s a lady who's sure", "all that glitters is gold", "and she’s buying a stairway to heaven"])
 stairway.sing_me_a_song()
 
-#==================== EXERCISE 4 : Afternoon At The Zoo ==========================
+# ==================== EXERCISE 4 : Afternoon At The Zoo ==========================
 
 print_header('4 : Afternoon At The Zoo')
 
-class Zoo():
+
+class Zoo:
     def __init__(self, zoo_name):
         self.name = zoo_name
         self.animals = []
+        self.sorted_animals = {}
 
     def add_animal(self, new_animal):
         if new_animal.lower() not in self.animals:
@@ -111,7 +112,7 @@ class Zoo():
             print(f'\n{animal_sold.title()} removed from zoo\'s database.')
         else:
             print(f'\nWe don\'t have {animal_sold} in zoo database.')
-    
+
     def sort_animals(self):
         self.animals.sort()
         animals = self.animals
@@ -119,21 +120,21 @@ class Zoo():
         for animal in animals:
             group = set()
             first_letter = animal[0]
-            for animal in animals:
-                if animal[0] == first_letter:
-                    group.add(animal)
+            for _animal in animals:
+                if _animal[0] == first_letter:
+                    group.add(_animal)
             if first_letter not in animals_groups.keys():
                 animals_groups[first_letter] = group
             else:
                 continue
         self.sorted_animals = animals_groups
 
-
     def get_groups(self):
         print()
         for key, value in self.sorted_animals.items():
             value_str = ', '.join(value)
             print(f'"{key}": {value_str}')
+
 
 ramat_gan_safari = Zoo('Ramat Gan Safari')
 ramat_gan_safari.add_animal('Koala')
@@ -152,4 +153,3 @@ ramat_gan_safari.add_animal('tiger')
 ramat_gan_safari.sort_animals()
 ramat_gan_safari.get_animals()
 ramat_gan_safari.get_groups()
-print()
