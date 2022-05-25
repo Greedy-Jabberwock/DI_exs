@@ -56,6 +56,9 @@ class Airplane:
         Method changes the current location of airplane,
         calling methods take_off() and land() from Fight class
         """
+        if len(self.next_flights) == 0:
+            print('There are no scheduled flights of this airplane.')
+            return None
         next_flight = self.next_flights[0]
         if next_flight.destination == destination:
             self.next_flights.pop(0)
@@ -153,6 +156,7 @@ class Airport:
         if self.planes != 0:
             for plane in self.planes:
                 if plane.available_on_date(date, self):
+                    date = check_instance(date, datetime)
                     flight = Flight(date, destination, self, plane)
                     sort_func = lambda x: x.date
                     self.scheduled_departures.append(flight)
@@ -164,6 +168,8 @@ class Airport:
                     break
                 else:
                     continue
+            else:
+                print('There are no available airplanes at this date.')
         else:
             print('There are no airplanes in this airport.')
 
@@ -201,11 +207,12 @@ def main():
     vnukovo.schedule_flight(istanbul, _date)
     vnukovo.schedule_flight(winna, _date)
 
-    istanbul.schedule_flight(ben_gurion, datetime(2022, 10, 15))
-    istanbul.schedule_flight(ben_gurion, datetime(2022, 10, 14))
-    istanbul.schedule_flight(ben_gurion, datetime(2022, 10, 16))
+    istanbul.schedule_flight(ben_gurion, _date)
+    istanbul.schedule_flight(ben_gurion, _date)
+    istanbul.schedule_flight(ben_gurion, _date)
 
     el_2.fly(istanbul)
+    air_1.fly(winna)
 
     istanbul.schedule_flight(ben_gurion, datetime(2022, 10, 11))
     istanbul.schedule_flight(vnukovo, datetime(2023, 12, 1))
@@ -215,7 +222,7 @@ def main():
     istanbul.info(start_date, end_date)
     ben_gurion.info(start_date, end_date)
 
-    aero_2.fly(winna)
+    istanbul.schedule_flight(vnukovo, datetime(2022, 10, 11))
 
     print(istanbul.__repr__())
     print(el_1.__repr__())
