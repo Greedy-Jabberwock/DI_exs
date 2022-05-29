@@ -14,7 +14,7 @@ class Airline:
     Airline just represent a flight company and store planes of this company
     """
 
-    def __init__(self, id, name):
+    def __init__(self, id: int, name: str):
         self.id = check_instance(id, str)
         self.name = check_instance(name, str)
         self.planes = []
@@ -28,17 +28,70 @@ class Airline:
                f"Planes: {[str(p) for p in self.planes]}>"
 
 
+class Airport:
+    """
+    Class represents airport in some city. It stores planes, which now at
+    the airport and lists of departures and arrivals.
+    """
+
+    def __init__(self, city: str):
+        self.city = city
+        self.planes = []
+        self.scheduled_departures = []
+        self.scheduled_arrivals = []
+
+    def __str__(self):
+        return f'Airport {self.city}'
+
+    def __repr__(self):
+        return f'\nAirport {self.city}\n' \
+               f'Planes: {[str(plane) for plane in self.planes]}\n' \
+               f'Arrivals: {[str(flight) for flight in self.scheduled_arrivals]}\n' \
+               f'Departures: {[str(flight) for flight in self.scheduled_departures]}\n'
+
+    def schedule_flight(self, destination, date):
+        """Finds available airplane in this Airport, schedules Airplane for the flight"""
+        if self.planes != 0:
+            for plane in self.planes:
+                if plane.available_on_date(date, self):
+                    date = check_instance(date, datetime)
+                    flight = Flight(date, destination, self, plane)
+                    sort_func = lambda x: x.date
+                    self.scheduled_departures.append(flight)
+                    self.scheduled_departures.sort(key=sort_func)
+                    plane.next_flights.append(flight)
+                    plane.next_flights.sort(key=sort_func)
+                    destination.scheduled_arrivals.append(flight)
+                    destination.scheduled_arrivals.sort(key=sort_func)
+                    break
+            else:
+                print('There are no available airplanes at this date.')
+        else:
+            print('There are no airplanes in this airport.')
+
+    def info(self, start_date, end_date):
+        """Displays every scheduled flight from start_date to end_date"""
+        filter_flight = lambda x: start_date <= x.date <= end_date
+        filtered_departures = list(filter(filter_flight, self.scheduled_departures))
+        filtered_arrivals = list(filter(filter_flight, self.scheduled_arrivals))
+        print('--------------------------------------------------------')
+        print(self.city)
+        print(f'Departures:\n{[x.id for x in filtered_departures]}')
+        print(f'Arrivals:\n{[x.id for x in filtered_arrivals]}')
+        print('--------------------------------------------------------')
+
+
 class Airplane:
     """
     Airplane represent the airplane. It stores current location of airplane,
     company and list of the next flights
     """
 
-    def __init__(self, id, current_location, company):
-        self.id = check_instance(id, int)
-        self.current_location = check_instance(current_location, Airport)
+    def __init__(self, id, current_location: Airport, company: Airline):
+        self.id = id
+        self.current_location = current_location
         self.current_location.planes.append(self)
-        self.company = check_instance(company, Airline)
+        self.company = company
         self.company.planes.append(self)
         self.next_flights = []
 
@@ -128,61 +181,6 @@ class Flight:
         flight_index = self.destination.scheduled_arrivals.index(self)
         self.destination.scheduled_arrivals.pop(flight_index)
         self.plane.current_location = self.destination
-
-
-class Airport:
-    """
-    Class represents airport in some city. It stores planes, which now at
-    the airport and lists of departures and arrivals.
-    """
-
-    def __init__(self, city):
-        self.city = check_instance(city, str)
-        self.planes = []
-        self.scheduled_departures = []
-        self.scheduled_arrivals = []
-
-    def __str__(self):
-        return f'Airport {self.city}'
-
-    def __repr__(self):
-        return f'\nAirport {self.city}\n' \
-               f'Planes: {[str(plane) for plane in self.planes]}\n' \
-               f'Arrivals: {[str(flight) for flight in self.scheduled_arrivals]}\n' \
-               f'Departures: {[str(flight) for flight in self.scheduled_departures]}\n'
-
-    def schedule_flight(self, destination, date):
-        """Finds available airplane in this Airport, schedules Airplane for the flight"""
-        if self.planes != 0:
-            for plane in self.planes:
-                if plane.available_on_date(date, self):
-                    date = check_instance(date, datetime)
-                    flight = Flight(date, destination, self, plane)
-                    sort_func = lambda x: x.date
-                    self.scheduled_departures.append(flight)
-                    self.scheduled_departures.sort(key=sort_func)
-                    plane.next_flights.append(flight)
-                    plane.next_flights.sort(key=sort_func)
-                    destination.scheduled_arrivals.append(flight)
-                    destination.scheduled_arrivals.sort(key=sort_func)
-                    break
-                else:
-                    continue
-            else:
-                print('There are no available airplanes at this date.')
-        else:
-            print('There are no airplanes in this airport.')
-
-    def info(self, start_date, end_date):
-        """Displays every scheduled flight from start_date to end_date"""
-        filter_flight = lambda x: start_date <= x.date <= end_date
-        filtered_departures = list(filter(filter_flight, self.scheduled_departures))
-        filtered_arrivals = list(filter(filter_flight, self.scheduled_arrivals))
-        print('--------------------------------------------------------')
-        print(self.city)
-        print(f'Departures:\n{[x.id for x in filtered_departures]}')
-        print(f'Arrivals:\n{[x.id for x in filtered_arrivals]}')
-        print('--------------------------------------------------------')
 
 
 def main():
