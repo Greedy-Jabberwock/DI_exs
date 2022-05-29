@@ -14,9 +14,9 @@ class Airline:
     Airline just represent a flight company and store planes of this company
     """
 
-    def __init__(self, id: int, name: str):
-        self.id = check_instance(id, str)
-        self.name = check_instance(name, str)
+    def __init__(self, _id: str, name: str):
+        self.id = _id
+        self.name = name
         self.planes = []
 
     def __str__(self):
@@ -49,12 +49,12 @@ class Airport:
                f'Arrivals: {[str(flight) for flight in self.scheduled_arrivals]}\n' \
                f'Departures: {[str(flight) for flight in self.scheduled_departures]}\n'
 
-    def schedule_flight(self, destination, date):
+    def schedule_flight(self, destination, date: datetime):
         """Finds available airplane in this Airport, schedules Airplane for the flight"""
+        destination = check_instance(destination, Airport)
         if self.planes != 0:
             for plane in self.planes:
                 if plane.available_on_date(date, self):
-                    date = check_instance(date, datetime)
                     flight = Flight(date, destination, self, plane)
                     sort_func = lambda x: x.date
                     self.scheduled_departures.append(flight)
@@ -69,7 +69,7 @@ class Airport:
         else:
             print('There are no airplanes in this airport.')
 
-    def info(self, start_date, end_date):
+    def info(self, start_date: datetime, end_date: datetime):
         """Displays every scheduled flight from start_date to end_date"""
         filter_flight = lambda x: start_date <= x.date <= end_date
         filtered_departures = list(filter(filter_flight, self.scheduled_departures))
@@ -87,8 +87,8 @@ class Airplane:
     company and list of the next flights
     """
 
-    def __init__(self, id, current_location: Airport, company: Airline):
-        self.id = id
+    def __init__(self, _id: int, current_location: Airport, company: Airline):
+        self.id = _id
         self.current_location = current_location
         self.current_location.planes.append(self)
         self.company = company
@@ -104,7 +104,7 @@ class Airplane:
                f'Company: {self.company}, ' \
                f'Flights: {[str(f) for f in self.next_flights]}'
 
-    def fly(self, destination):
+    def fly(self, destination: Airport):
         """
         Method changes the current location of airplane,
         calling methods take_off() and land() from Fight class
@@ -120,7 +120,7 @@ class Airplane:
         else:
             print("There is no such flight in the schedule.")
 
-    def location_on_date(self, date):
+    def location_on_date(self, date: datetime):
         """
         Method returns where the airplane will be on given date.
         """
@@ -132,7 +132,7 @@ class Airplane:
         else:
             return None
 
-    def available_on_date(self, date, location):
+    def available_on_date(self, date: datetime, location: Airport):
         """
         Returns True if the plane can fly from given location on this day
         (airplane is in this location and have no flights on this day)
@@ -151,11 +151,11 @@ class Flight:
     This class represents information about flight. It's methods just change data in other classes.
     """
 
-    def __init__(self, date, destination, origin, plane):
-        self.date = check_instance(date, datetime)
-        self.destination = check_instance(destination, Airport)
-        self.origin = check_instance(origin, Airport)
-        self.plane = check_instance(plane, Airplane)
+    def __init__(self, date: datetime, destination: Airport, origin: Airport, plane: Airplane):
+        self.date = date
+        self.destination = destination
+        self.origin = origin
+        self.plane = plane
         self.id = f"{destination.city}-{plane.company.id}-{date.strftime('%Y/%m/%d')}"
 
     def __str__(self):
@@ -194,11 +194,8 @@ def main():
     istanbul = Airport('Istanbul')
 
     el_1 = Airplane(5098, istanbul, el_al)
-    el_2 = Airplane(8903, vnukovo, el_al)
+    aero_1 = Airplane(8903, vnukovo, aeroflot)
     air_1 = Airplane(234, winna, ren_air)
-    air_2 = Airplane(222, ben_gurion, ren_air)
-    aero_1 = Airplane(12455, vnukovo, aeroflot)
-    aero_2 = Airplane(12344, istanbul, aeroflot)
 
     _date = datetime(2022, 10, 12)
 
@@ -209,7 +206,7 @@ def main():
     istanbul.schedule_flight(ben_gurion, _date)
     istanbul.schedule_flight(ben_gurion, _date)
 
-    el_2.fly(istanbul)
+    aero_1.fly(istanbul)
     air_1.fly(winna)
 
     istanbul.schedule_flight(ben_gurion, datetime(2022, 10, 11))
