@@ -5,7 +5,7 @@ class Node:
     root = None
 
     def __init__(self, value):
-        self._value = value
+        self._value = value # private attribute should be with __
         self._left = None
         self._right = None
         if self.counter == 0:
@@ -31,7 +31,7 @@ class Node:
 
     @left.setter
     def left(self, left_node):
-        self._left = left_node if isinstance(left_node, Node) else None
+        self._left = left_node if isinstance(left_node, Node) else None # I done understand what is the different bwteen left to right node, there is a better implementation, you can google it
 
     @property
     def right(self):
@@ -51,7 +51,7 @@ class Node:
             if self.is_None(self.left):
                 self.left = other
             else:
-                self.add_node(self.left, other)
+                self.add_node(self.left, other) 
         else:
             if self.is_None(self.right):
                 self.right = other
@@ -59,7 +59,7 @@ class Node:
                 self.add_node(self.right, other)
 
     @staticmethod
-    def searching(cls, value):
+    def searching(cls, value): # static method should not take cls
         print(f'\t- Current node: {cls.value}')
         if value == cls.value:
             print(f"{value} is in the binary tree.")
