@@ -8,7 +8,7 @@ class Human:
         self.building = building
 
     def move(self, building):
-        if isinstance(building, Building):
+        if isinstance(building, Building): # rather than doing this check you can add annotation to building like building: Building
             building.inhabitants.append(self)
         else:
             print('Wrong type of object to move!')
