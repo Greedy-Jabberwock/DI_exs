@@ -1,7 +1,7 @@
 from datetime import datetime
 
 
-def check_instance(cls, other):
+def check_instance(cls, other): # as we menthened at the class there is another way to check the type by adding type annotations
     """Checks instance of class with given class, if True returns instance, else raise TypeError."""
     if isinstance(cls, other):
         return cls
@@ -129,7 +129,7 @@ class Airplane:
         for flight in self.next_flights:
             if flight.date == date:
                 return flight.origin
-        else:
+        else: # it's redundant you can remove it
             return None
 
     def available_on_date(self, date: datetime, location: Airport):
@@ -140,7 +140,7 @@ class Airplane:
         for flight in self.next_flights:
             if flight.date == date:
                 return False
-        if self.location_on_date(date) == location:
+        if self.location_on_date(date) == location: # it can be just return self.location_on_date(date) == location
             return True
         else:
             return False
