@@ -2,7 +2,7 @@ from math import pi
 import turtle
 
 class Circle:
-    circles = []
+    circles = [] # make it private
 
     def __init__(self, radius):
         self.radius = radius
@@ -28,13 +28,13 @@ class Circle:
         return self
 
     def __gt__(self, other):
-        return True if self.radius > other.radius else False
+        return True if self.radius > other.radius else False # or just return self.radius > other.radius
 
     def __eq__(self, other):
-        return True if self.radius == other.radius else False
+        return True if self.radius == other.radius else False # or just: self.radius == other.radius
 
     def __repr__(self):
-        return f'Class {self.__class__.__name__}, ' \
+        return f'Class {self.__class__.__name__}, ' \ # for multiline use """ """
                f'radius: {self.radius}, ' \
                f'diameter: {self.diameter}\n'
 
