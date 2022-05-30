@@ -1,30 +1,30 @@
 class Person:
-    persons = []
+    persons = [] # make it private
 
     def __init__(self, name, age, score):
         if self.valid_info(name, age, score):
-            self.info = (str(name).strip(), str(age).strip(), str(score).strip())
+            self.info = (str(name).strip(), str(age).strip(), str(score).strip()) # redundant prathenses
             Person.persons.append(self)
             self.validation = True
         else:
-            self.validation = False
+            self.validation = False # if it's not validate we need to throw exception
             print('Invalid parameters. Try again.')
 
     def __repr__(self):
-        return f'{self.info}'
+        return f'{self.info}' # it should return info for developers how to create the instance
 
     def __lt__(self, other):
         for i in range(3):
             if self.info[i] >= other.info[i]:
                 return False
-        else:
+        else: # else is redundant 
             return True
 
     def __le__(self, other):
         for i in range(3):
             if self.info[i] > other.info[i]:
                 return False
-        else:
+        else:  # else is redundant 
             return True
 
     @staticmethod
@@ -33,7 +33,7 @@ class Person:
             if str(age).strip().isdigit() and str(score.strip().isdigit()):
                 if 0 < int(age) < 120 and 0 < int(score):
                     return True
-        else:
+        else:  # else is redundant 
             return False
 
 
