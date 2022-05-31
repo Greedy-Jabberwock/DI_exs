@@ -1,4 +1,13 @@
-from random import randint, choice
+from random import randint
+
+
+class Building:
+    def __init__(self, address, inhabitants=None):
+        self.address = address
+        self.inhabitants = [] if inhabitants is None else inhabitants
+
+    def __repr__(self):
+        return f'Building on {self.address}. Inhabitants amount - {len(self.inhabitants)}'
 
 
 class Human:
@@ -7,26 +16,15 @@ class Human:
         self.age = age
         self.building = building
 
-    def move(self, building):
-        if isinstance(building, Building): # rather than doing this check you can add annotation to building like building: Building
-            building.inhabitants.append(self)
-        else:
-            print('Wrong type of object to move!')
-
-
-class Building:
-    def __init__(self, address, inhabitants=[]):
-        self.address = address
-        self.inhabitants = inhabitants
-
-    def __repr__(self):
-        return f'Building on {self.address}. Inhabitants amount - {len(self.inhabitants)}'
+    def move(self, building: Building):
+        # (+)rather than doing this check you can add annotation to building like building: Building
+        building.inhabitants.append(self)
 
 
 class City:
-    def __init__(self, name, buildings=[]):
+    def __init__(self, name, buildings=None):
         self.name = name
-        self.buildings = buildings
+        self.buildings = [] if buildings is None else buildings
 
     def construct(self, address):
         self.buildings.append(Building(address))
