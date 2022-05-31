@@ -1,14 +1,6 @@
 from datetime import datetime
 
 
-def check_instance(cls, other): # as we menthened at the class there is another way to check the type by adding type annotations
-    """Checks instance of class with given class, if True returns instance, else raise TypeError."""
-    if isinstance(cls, other):
-        return cls
-    else:
-        raise TypeError(f'Value must be {other.__name__()} class.')
-
-
 class Airline:
     """
     Airline just represent a flight company and store planes of this company
@@ -49,9 +41,20 @@ class Airport:
                f'Arrivals: {[str(flight) for flight in self.scheduled_arrivals]}\n' \
                f'Departures: {[str(flight) for flight in self.scheduled_departures]}\n'
 
+    # I can't figure how to use annotation in this case.
+    # Airport and Airplane are binded, so i can't use annotation in Airplane, if Airport is above the Airport,
+    # and i can't use annotation in Airport, if Airplane is above. I don't see another way, except the creation
+    # helper function for this.
+    @staticmethod
+    def check_airport_type(cls):
+        if isinstance(cls, Airport):
+            return cls
+        else:
+            raise TypeError(f'Value must be {Airport.__name__} class.')
+
     def schedule_flight(self, destination, date: datetime):
         """Finds available airplane in this Airport, schedules Airplane for the flight"""
-        destination = check_instance(destination, Airport)
+        destination = self.check_airport_type(destination)
         if self.planes != 0:
             for plane in self.planes:
                 if plane.available_on_date(date, self):
@@ -129,8 +132,7 @@ class Airplane:
         for flight in self.next_flights:
             if flight.date == date:
                 return flight.origin
-        else: # it's redundant you can remove it
-            return None
+        return None  # (+)it's redundant you can remove it
 
     def available_on_date(self, date: datetime, location: Airport):
         """
@@ -140,10 +142,8 @@ class Airplane:
         for flight in self.next_flights:
             if flight.date == date:
                 return False
-        if self.location_on_date(date) == location: # it can be just return self.location_on_date(date) == location
-            return True
-        else:
-            return False
+        return self.location_on_date(date) == location
+        # (+) it can be just return self.location_on_date(date) == location
 
 
 class Flight:
