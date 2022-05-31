@@ -10,6 +10,9 @@ class Circle:
         self.diameter = radius*2
         Circle.add_to_list(self)
 
+    def __str__(self):
+        return f'{self.__class__.__name__} with radius {self.radius}'
+
     @property
     def circles(self):
         return Circle.__circles
@@ -43,9 +46,6 @@ class Circle:
                radius: {self.radius},  \
                diameter: {self.diameter}\n"""  # (+) for multiline use """ """
 
-    def __str__(self):
-        return f'{self.__class__.__name__} with radius {self.radius}'
-
 
 c1 = Circle(16)
 c2 = Circle(5)
@@ -54,6 +54,5 @@ print(c2 + c1)
 c2 += c3
 print(str(c2))
 Circle.sort_circles()
-print(Circle.circles)
 print(c1.calculate_area())
 c1.print_circle()
