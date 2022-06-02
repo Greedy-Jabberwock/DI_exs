@@ -6,9 +6,14 @@ urls = {'Google': 'https://www.google.com/',
        'YouTube': 'https://www.youtube.com/',
        'StackOverflow': 'https://stackoverflow.com/'}
 
-for key, value in urls.items():
+
+def time_counter(name, url):
     start = time.time()
-    response = requests.get(value)
+    requests.get(url)
     end = time.time()
     time_taken = round(end - start, 4)
-    print(f'{key} takes {time_taken} sec to load page.')
+    print(f'{name} takes {time_taken} sec to load page.')
+
+
+for key, value in urls.items():
+    time_counter(key, value)
