@@ -3,11 +3,12 @@ from anagram_checker import AnagramChecker
 
 def show_menu():
     print('''
-    ---------------------------------------
-    Hello! I can find anagrams to words. Do you want to try?
-    c - continue
-    e - exit
-    ---------------------------------------''')
+    \r---------------------------------------
+    \rHello! I can find anagrams to words. Do you want to try?
+    \rc - continue
+    \re - exit
+    \r---------------------------------------
+    ''')
 
 
 def get_choice():
