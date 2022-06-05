@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+	<title>CV</title>
+</head>
+<body>
+	<section>
+		<div id="info">
+			<img src="{{url_for('static', filename='pict.jpeg')}}" alt="some_pict">
+			<h1>Hello, my name is <span id='name'>Vitalii</span>, and I'm learning <span id="frame">Flask</span>.</h1>
+		</div>
+		<table>
+			<tr>
+				<th class='hobbie'>Hobbies</th>
+				<td>Coding, gaming, archery</td>
+			</tr>
+			<tr>
+				<th class='skill'>Skills</th>
+				<td>Python, Flask, HTML, CSS, JS, </td>
+			</tr>
+			<tr>
+				<th class='strength'>Strenghts</th>
+				<td>Like to code, like to learn. Temperance.</td>
+			</tr>
+			<tr>
+				<th class='weak'>Weaknesses</th>
+				<td>Not enough temperance.</td>
+			</tr>
+		</table>
+	</section>
+</body>
+</html>

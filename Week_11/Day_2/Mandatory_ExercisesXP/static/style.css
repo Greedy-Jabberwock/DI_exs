@@ -1,0 +1,66 @@
+body {
+
+	background-color: cadetblue;
+}
+
+
+section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-items: center;
+}
+
+#info {
+	font-weight: bold;
+	width: 80%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+h1 {
+	font-size: 4vh;
+}
+
+img {
+	width: 40vh;
+	display: inline;
+}
+
+table {
+	font-size: 3vh;
+}
+
+tr, th, td {
+	border: 1px solid #ddd;
+  	padding: 8px;
+}
+
+.hobbie {
+	color: orangered;
+}
+
+.skill {
+	color: greenyellow;
+}
+
+.strength {
+	color: limegreen;
+}
+
+.weak {
+	color: darkred;
+}
+
+span {
+	font-style: italic;
+}
+
+#name {
+	color: aquamarine;
+}
+
+#frame {
+	color: salmon;
+}
