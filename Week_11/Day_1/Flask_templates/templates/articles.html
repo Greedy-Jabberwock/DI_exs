@@ -7,9 +7,9 @@
 </head>
 <body>
     <table>
-        <tr><th>{{article1}}</th></tr>
-        <tr><th>{{article2}}</th></tr>
-        <tr><th>{{article3}}</th></tr>
+        {% for article in articles.values() %}
+        <tr><th>{{article}}</th></tr>
+        {% endfor %}
     </table>
     <br>
     <button><a href="{{url_for('blog')}}">Go back to homepage</a></button>

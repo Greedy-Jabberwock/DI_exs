@@ -18,10 +18,7 @@ def blog():
 @app.route('/blog/articles')
 def articles():
     articles_d = {'first': "News", 'second': "Links", 'third': "Help"}
-    return render_template("articles.html",
-                           article1=articles_d['first'],
-                           article2=articles_d['second'],
-                           article3=articles_d['third'])
+    return render_template("articles.html", articles=articles_d)
 
 
 @app.route('/profile')
