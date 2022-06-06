@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h2>Last articles:</h2>
+{% endblock header %}
+
+{% block articles %}
+    {% for post in posts %}
+        <div>
+            <hr>
+            <span>{{ post.author }} - </span><span>Posted on {{ post.date }} </span>
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.content }}</p>
+            <hr>
+        </div>
+    {% endfor %}
+    <a href="{{ url_for('blog') }}">Back to homepage</a>
+{% endblock articles %}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+	<title>{{title}}</title>
+</head>
+<body>
+	<section>
+		<div id="info">
+			<img src="https://picsum.photos/640/480/?image={{img_url}}" alt="some_pict">
+			<h1>{% block info %}{% endblock info %}</h1>
+		</div>
+		{% block section %}
+		{% endblock section %}
+	</section>
+</body>
+</html>

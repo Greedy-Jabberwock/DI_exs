@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block info %}
+	Hello, my name is <span id='name'><a href="{{url_for('email')}}">{{cv_name}}</a></span>, and I'm <span id="frame">{{job}}</span>.
+{% endblock info%}
+
+{% block section %}
+	<table>
+	<tr>
+		<th class='hobbie'>Hobbies</th>
+		<td>Coding, gaming, archery</td>
+	</tr>
+	<tr>
+		<th class='skill'>Skills</th>
+		<td>Python, Flask, HTML, CSS, JS. </td>
+	</tr>
+	<tr>
+		<th class='strength'>Strenghts</th>
+		<td>Like to code, like to learn. Temperance.</td>
+	</tr>
+	<tr>
+		<th class='weak'>Weaknesses</th>
+		<td>Not enough temperance.</td>
+	</tr>
+	</table>
+{% endblock section %}

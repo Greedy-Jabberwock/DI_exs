@@ -8,7 +8,7 @@ def make_exercise1():
 
 
 def make_exercise2():
-    from flask import Flask, render_template, url_for
+    from flask import Flask, render_template
     header('Exercise 2')
     app = Flask(__name__)
 

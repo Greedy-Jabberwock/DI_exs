@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>Hello, {% if username %} 
+                    {{username}} 
+                {% else %} 
+                    friend 
+                {% endif %}
+        . Welcome to my blog!</h1>
+{% endblock header %}
+
+{% block articles %}
+    <a href="{{url_for('articles')}}">To articles</a>
+{% endblock articles %}
