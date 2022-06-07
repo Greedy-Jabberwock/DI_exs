@@ -11,19 +11,16 @@ class Text:
     @classmethod
     def from_file(cls, path: str):
         with open(path) as file:
-            txt = cls(file.read()) # you can just return here
-        return txt
+            return cls(file.read()) # (+) you can just return here
 
     def split_text(self):
-        words = re.findall(r'[a-zA-Z][a-z]+|[aA]', self.text) # you can return a single line
-        return words
+        return re.findall(r'[a-zA-Z][a-z]+|[aA]', self.text)  # (+) you can return a single line
 
     def word_frequency(self, word):
         word = word.strip()
         if word in self.splitted_text:
             return self.splitted_text.count(word)
-        else:  # it's redundant it will be returned None by default
-            return None 
+        # (+) it's redundant it will be returned None by default
 
     def unique_words(self):
         return set(self.splitted_text)
