@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+
+{% block h1 %}
+	{{ product['Name'] }}
+{% endblock h1 %}
+
+
+{% block jumbo %}
+	<ul>
+		{% if product['Quantity'] > 0 %}
+			<li class="list-group-item list-group-item-success">This product is currently available. Order while stock last!</li>
+		{% else %}
+			<li class="list-group-item list-group-item-danger">Sorry - this product is currently out of stock.</li>
+		{% endif%}
+	</ul>
+{% endblock jumbo %}
+
+
+{% block body %}
+	<div class="container">
+		<h4 class="bg-light p-2">Product details:</h4>
+		<table class="table table-white">
+			<tbody>
+			{% for key, value in product.items() %}
+			    <tr>
+			      <td>{{key}}</td>
+			      <td>{{value}}</td>
+			    </tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+{% endblock body %}

@@ -1,0 +1,6 @@
+{% block nav %}
+    <nav>
+        <a href="{{ url_for('index') }}">All types</a>
+        <a href="{{ url_for('all_pokemons', offset=0, limit=20)}}"> All pokemons</a>
+    </nav>
+{% endblock nav %}

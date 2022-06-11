@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+
+{% block h1 %}
+	Tech market products
+{% endblock h1 %}
+
+
+{% block jumbo %}
+	Browse our extensive range of tech products
+{% endblock jumbo %}
+
+
+{% block body %}
+	
+	{% for product in products %}
+		<div class="card col-12 mb-2" style="width: 60%; margin-left: 20%;">
+		  <div class="card-body">
+		    <h5 class="card-title">{{ product['Name']}}</h5>
+		    <h6 class="card-subtitle mb-2 text-muted">{{ product['ProductId']}}</h6>
+		    <p class="card-text">{{ product['Description'] }}</p>
+		    <p class="card-text">Price: {{ product['Price'] }} {{ product['CurrencyCode'] }}</p>
+		    <a href="{{ url_for('product_info', title=product['ProductId'], product_id=product['ProductId']) }}">See more</a>
+		  </div>
+		</div>
+	{% endfor %}
+
+{% endblock body %}

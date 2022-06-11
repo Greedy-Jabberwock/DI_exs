@@ -1,21 +1,32 @@
+import json
+
 from flask import Flask, render_template, url_for
 
 app = Flask(__name__)
 
+with open('product_db.json') as db:
+    all_products = json.load(db)
 
-@app.route('/')
+
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return 'index'
+    return render_template('index.html', title='Home')
 
 
-@app.route('/products')
+@app.route('/products', methods=['GET', 'POST'])
 def products_list():
-    return 'products page'
+    return render_template('products.html', title='Products',
+                           products=all_products)
 
 
-@app.route('/products/<product_id>')
+@app.route('/products/<product_id>', methods=['GET', 'POST'])
 def product_info(product_id):
-    return f'product {product_id}'
+    curr_product = None
+    for product in all_products:
+        if product['ProductId'] == product_id:
+            curr_product = product
+    return render_template('product_page.html', title=product['ProductId'],
+                           product=curr_product)
 
 
 if __name__ == '__main__':

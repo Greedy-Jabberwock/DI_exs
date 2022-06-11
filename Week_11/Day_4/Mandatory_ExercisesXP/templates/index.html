@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+
+{% block h1 %}
+	Welcome to TechMarket
+{% endblock h1 %}
+
+
+{% block jumbo %}
+	The fastest growing online retailer in the west...
+{% endblock jumbo %}
+
+
+{% block body %}
+	
+	<div class="container">
+		<h3>About</h3>
+		<p>We supply a wide range of tech products and accessories for our clients all over the world.</p>
+		<ul class="list-group">
+		  <li>Laptops</li>
+		  <li>Computers</li>
+		  <li>Phones</li>
+		  <li>Audio eqipment</li>
+		  <li>HD Monitors</li>
+		  <li>Wireless Routers</li>
+		</ul>
+		<button class='btn-lg btn-danger mt-3'><a class="text-white" href="{{url_for('products_list', title='Products', products=all_products)}}">Check out our products</a></button>
+	</div>
+
+{% endblock body %}

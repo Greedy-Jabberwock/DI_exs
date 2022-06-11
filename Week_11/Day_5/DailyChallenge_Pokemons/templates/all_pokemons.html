@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block nav %}
+    <nav>
+        <a href="{{ url_for('index') }}">All types</a>
+        <a href="{{ url_for('all_pokemons', offset=0, limit=20)}}"> All pokemons</a>
+    </nav>
+{% endblock nav %}
+
+{% block body %}
+    <ul>
+        {% for item in items %}
+            <li>
+                <a href="{{ url_for('pokemon_by_name', name=item['name']) }}">
+                    <iframe src="{{ url_for('pokemon_by_name', name=item['name']) }}"></iframe>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock body %}
+
+{% block footer %}
+    <div class="bottom">
+        <a href=" {{ url_for('all_pokemons', offset=previous, limit=20) }} ">Previous</a>
+        <a href=" {{ url_for('all_pokemons', offset=next, limit=20) }} ">Next</a>
+    </div>
+{% endblock footer %}

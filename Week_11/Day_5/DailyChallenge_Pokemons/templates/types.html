@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block nav %}
+    <nav>
+        <a href="{{ url_for('index') }}">All types</a>
+        <a href="{{ url_for('all_pokemons', offset=0, limit=20)}}"> All pokemons</a>
+    </nav>
+{% endblock nav %}
+
+{% block body %}
+    <ul>
+        {% for item in names %}
+        <li><a href="{{ url_for('pokemons_by_type', type=item) }}">{{ item }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock body %}
