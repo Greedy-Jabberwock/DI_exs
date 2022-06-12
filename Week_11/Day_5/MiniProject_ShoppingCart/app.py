@@ -22,7 +22,7 @@ def products():
     return render_template('products.html', products=all_products)
 
 
-@app.route('/products/<string:product_id>', methods=['GET', 'POST'])
+@app.route('/products/<string:product_id>', methods=['GET', 'POST']) # the string is redundant, it will be string by default
 def product_by_id(product_id):
     requested_item = find_product(product_id)
     return render_template('product_page.html', product=requested_item)
