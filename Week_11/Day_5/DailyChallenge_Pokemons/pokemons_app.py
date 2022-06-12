@@ -29,7 +29,7 @@ def pokemon_by_id(id):
     return redirect(url_for('pokemon_by_name', name=data['name']))
 
 
-@app.route('/pokemons/byname/<string:name>')
+@app.route('/pokemons/byname/<string:name>') # the string is redundant
 def pokemon_by_name(name):
     data = get_data(f'https://pokeapi.co/api/v2/pokemon/{name}')
     return render_template('pokemon_page.html', title=data['name'].title(),
