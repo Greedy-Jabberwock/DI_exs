@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create template</title>
+    <style>
+        textarea {
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello, let's create CV page for you.</h1>
+        <p>But I need some information about you!</p>
+        <div class="container">
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                    {{ form.first_name.label}}
+                    {{ form.first_name(size=32) }}
+                <br><br>
+                    {{ form.last_name.label }}
+                    {{ form.last_name(size=32) }}
+                <br><br>
+                    {{ form.job.label }}
+                    {{ form.job(size=32) }}
+                <br><br>
+                    {{ form.bio.label }}
+                    {{ form.bio(size=800) }}
+                <br><br>
+                    {{ form.work.label }}
+                    {{ form.work(size=320) }}
+                <br><br>
+                    {{ form.education.label }}
+                    {{ form.education(size=320) }}
+                <br><br>
+                    {{ form.submit() }}
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>

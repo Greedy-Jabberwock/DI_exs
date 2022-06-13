@@ -6,7 +6,7 @@ from Week_12.Day_1.App_structure.app.forms import Login, Contact
 @my_app.route("/", methods=['GET', 'POST'])
 def index():
     login_form = Login()
-    if login_form.validate_on_submit():
+    if login_form.validate_on_submit() and flask.request.method == 'POST':
         username = login_form.username.data
         password = login_form.password.data
         bio = login_form.bio.data
