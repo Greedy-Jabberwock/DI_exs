@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <div class="container bg-light">
+        <form method="post" class="m-3 py-4">
+        {{ form.hidden_tag() }}
+
+        {{ form.name.label }}:
+        {{ form.name(size=32, class='form-control', value='*') }}
+
+        {{ form.country.label }}:
+        {{ form.country(size=32, class='form-control mb-2', value='*') }}
+
+        {{ form.inhabitants.label }}:
+        {{ form.inhabitants(class='form-control mb-2', value='*') }}
+
+        {{ form.area.label }}:
+        {{ form.area(class='form-control mb-2') }}
+
+        {{ form.description.label }}:
+        {{ form.description(size=150, class='form-control mb-2') }}
+
+        {{ form.capital.label }}:
+        {{ form.capital(class='mb-3') }}
+
+        {{ form.file.label }}:
+        {{ form.file(class='form-control mb-2')}}
+
+        <br>
+        {{ form.submit(class='btn btn-primary') }}
+    </form>
+    </div>
+
+{% endblock body%}
