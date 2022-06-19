@@ -11,7 +11,7 @@ def get_list_of_cities():
     if os.path.getsize(filename) > 0:
         with open(filename) as f:
             return json.load(f)
-    else:
+    else: # the else is redundant
         return []
 
 
