@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .alert-green {
+            background-color: green;
+            color: white;
+        }
+
+        .alert-red {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+    {% for category, message in get_flashed_messages(with_categories=True) %}
+        <p class="alert-{{category}}">{{ message }}</p>
+    {% endfor %}
+
+    {% for book in books %}
+        <h3>{{book}}</h3>
+    {% endfor %}
+
+</body>
+</html>

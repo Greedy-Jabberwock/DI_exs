@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home
+{% endblock title %}
+
+{% block link %}
+    <div class="d-flex justify-content-center p-2">
+        <a class="nav-link btn btn-danger text-reset mx-2 px-4" href="{{ url_for('login')}}">Log In</a>
+        <a class="nav-link btn btn-danger text-reset mx-2 px-4" href="{{ url_for('add_user')}}">Add user</a>
+    </div>
+
+{% endblock link %}
+
+{% block body %}
+    <div>
+        <hr>
+        <h5>Display all users</h5>
+        <hr>
+        <table class="table">
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>Street</th>
+                <th>Zipcode</th>
+            </thead>
+            <tbody>
+                {% for user in user.query.all() %}
+                    <tr>
+                        <td>{{ user.user_id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.city }}</td>
+                        <td>{{ user.street }}</td>
+                        <td>{{ user.zipcode }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+
+    <div>
+        <hr>
+        <h5>Only display the user(s) who live(s) in “Roscoeview”.</h5>
+        <hr>
+        <table class="table">
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>Street</th>
+                <th>Zipcode</th>
+            </thead>
+            <tbody>
+                {% for user in user.query.filter_by(city='Roscoeview') %}
+                    <tr>
+                        <td>{{ user.user_id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.city }}</td>
+                        <td>{{ user.street }}</td>
+                        <td>{{ user.zipcode }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+
+    <div>
+        <hr>
+        <h5>Only display the first 5 users.</h5>
+        <hr>
+        <table class="table">
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>Street</th>
+                <th>Zipcode</th>
+            </thead>
+            <tbody>
+                {% for user in user.query.limit(5).all() %}
+                    <tr>
+                        <td>{{ user.user_id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.city }}</td>
+                        <td>{{ user.street }}</td>
+                        <td>{{ user.zipcode }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+
+    <div>
+        <hr>
+        <h5>Only display the user(s) which zipcode starts with the number 5.</h5>
+        <hr>
+        <table class="table">
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>Street</th>
+                <th>Zipcode</th>
+            </thead>
+            <tbody>
+                {% for user in user.query.filter(user.zipcode.like('5%')).all() %}
+                    <tr>
+                        <td>{{ user.user_id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.city }}</td>
+                        <td>{{ user.street }}</td>
+                        <td>{{ user.zipcode }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock body %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Sign Up
+{% endblock title %}
+
+{% block link %}
+    <div class="d-flex justify-content-center p-2">
+        <a class="nav-link btn btn-danger text-reset mx-3" href="{{ url_for('login')}}">Log In</a>
+        <a class="nav-link btn btn-warning text-reset mx-3" href="{{ url_for('exercise')}}">EXERCISE</a>
+    </div>
+{% endblock link %}
+
+{% block body %}
+
+    {% for field, errors in form.errors.items() %}
+        <div class="alert alert-warning">
+            {{ form[field].label }}: {{ ', '.join(errors) }}
+        </div>
+    {% endfor %}
+
+    <form method="post" class="mb-3">
+        <div>
+            {{ form.hidden_tag() }}
+            <label class="form-label">{{ form.user_name.label }}</label>
+            {{ form.user_name(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">{{ form.city.label }}</label>
+            {{ form.city(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">{{ form.street.label }}</label>
+            {{ form.street(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">{{ form.zipcode.label }}</label>
+            {{ form.zipcode(class="form-control") }}
+        </div>
+        {{ form.submit(class='btn btn-info') }}
+    </form>
+{% endblock body %}
