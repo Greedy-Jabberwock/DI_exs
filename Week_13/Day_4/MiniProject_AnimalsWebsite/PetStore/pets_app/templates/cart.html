@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    {% with data = cart.get_all_data() %}
+        {% if data.pets %}
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% for pet in data.pets %}
+                  <div class="col">
+                      <div class="card shadow-sm">
+                        <img src="{{url_for('static', filename='img/' + pet.image)}}" class="img-fluid" style="height:160px">
+
+                        <div class="card-body">
+                          <p class="card-text">{{pet.breed}}</p>
+                          <p class="card-text">{{pet.price}}$</p>
+                          <div class="d-flex justify-content-center align-items-center">
+                            <div class="flex flex-justify-between">
+                              <a href="{{ url_for('pet', pet_id=pet.pet_id) }}" class="btn btn-success btn-sm text-warning mx-1">View details</a>
+                              <a href="{{ url_for('remove', pet_id=pet.pet_id) }}" class="btn btn-danger btn-sm text-warning mx-1">Remove</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <hr>
+            <p>Total price: {{ cart.get_total() }}$</p>
+        {% else %}
+            <h3>Your cart is empty now.</h3>
+        {% endif %}
+    {% endwith %}
+{% endblock body %}

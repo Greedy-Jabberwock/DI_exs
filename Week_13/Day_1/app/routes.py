@@ -1,6 +1,6 @@
 from app import app, db
 from app.models import Book
-from flask import flash, render_template, abort
+from flask import flash, render_template
 
 
 @app.route('/')

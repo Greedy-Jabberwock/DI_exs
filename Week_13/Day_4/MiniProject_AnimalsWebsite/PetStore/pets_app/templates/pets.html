@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    {% for pet in pets %}
+      <div class="col">
+          <div class="card shadow-sm">
+            <img src="{{url_for('static', filename='img/' + pet.image)}}" class="img-fluid" style="height:160px">
+
+            <div class="card-body">
+              <p class="card-text">{{pet.breed}}</p>
+              <p class="card-text">{{pet.price}}$</p>
+              <div class="d-flex justify-content-center align-items-center">
+                <div class="btn-group">
+                  <a href="{{ url_for('pet', pet_id=pet.pet_id) }}" class="btn btn-success text-warning">View details</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+  </div>
+
+{% endblock body %}

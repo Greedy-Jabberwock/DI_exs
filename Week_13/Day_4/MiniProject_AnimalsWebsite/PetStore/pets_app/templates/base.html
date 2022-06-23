@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PetsForYou</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav>
+      <header class="d-flex flex-wrap align-items-center justify-content-start justify-content-md-start p-3 mb-4 border-bottom bg-success">
+        <h4 class="mt-1 mx-3 text-warning">PetsForYou</h4>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="{{url_for('home')}}" class="nav-link px-2 link-warning btn btn-white mx-1">Home</a></li>
+          <li><a href="{{url_for('pets')}}" class="nav-link px-2 link-warning btn btn-white mx-1">Pets</a></li>
+          <li><a href="{{url_for('cart')}}" class="nav-link px-2 link-warning btn btn-white mx-1">Cart</a></li>
+          <li><a href="#" class="nav-link px-2 link-warning btn btn-white mx-1">Contact</a></li>
+        </ul>
+      </header>
+    </nav>
+
+    {% with flashed = get_flashed_messages(with_categories=True) %}
+      {% if flashed %}
+        {% for category, msg in flashed %}
+          <div class="alert alert-{{category}}" role="alert">
+            {{ msg }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% block heading %}
+
+    {% endblock heading %}
+
+    <div class="container">
+        {% block body %}  {% endblock body %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>
