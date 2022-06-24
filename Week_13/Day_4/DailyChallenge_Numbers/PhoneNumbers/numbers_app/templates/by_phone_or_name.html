@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} Found by phone or name {% endblock title %}
+
+{% block nav %}
+    {{ super() }}
+{% endblock nav %}
+
+{% block body %}
+    <div class="container d-flex justify-content-center my-5 ">
+        <div class="bd-example-snippet bd-code-snippet "><div class="bd-example">
+            <div class="row  row-cols-1 row-cols-md-1 g-4">
+                <div class="col">
+                    <div class="card">
+                      <ul class="list-group list-group-flush">
+                        {% for key, value in data.items() %}
+                            <li class="list-group-item">
+                                <b>{{key.title()}}:</b> {{value}}
+                            </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

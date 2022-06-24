@@ -1,22 +1,19 @@
 {% extends 'base.html' %}
 
+{% block nav %}
+    {{ super() }}
+{% endblock nav %}
+
 {% block body %}
-    <div class="container d-flex justify-content-center my-5 ">
-        <div class="bd-example-snippet bd-code-snippet "><div class="bd-example">
-            <div class="row  row-cols-1 row-cols-md-1 g-4">
-                <div class="col">
-                    <div class="card">
-                      <ul class="list-group list-group-flush">
-                        {% for key, value in data.items() %}
-                            <li class="list-group-item">
-                                <b>{{key.title()}}:</b> {{value}}
-                            </li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-            </div>
-        </div>
+    <div class="container">
+      <form method="post">
+      {{ form.hidden_tag() }}
+      <h3 class="form-label my-5">Let's search people!</h3>
+      {{ form.search(class='form-control') }}
+      <div id="passwordHelpBlock" class="form-text">
+        You must enter name, phone or nationality to find people.
+      </div>
+      {{ form.submit(class='btn btn-primary my-2') }}
+      </form>
     </div>
 {% endblock body %}
