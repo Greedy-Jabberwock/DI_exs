@@ -3,28 +3,38 @@
 {% block body %}
     {% with data = cart.get_all_data() %}
         {% if data.pets %}
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
                 {% for pet in data.pets %}
                   <div class="col">
                       <div class="card shadow-sm">
-                        <img src="{{url_for('static', filename='img/' + pet.image)}}" class="img-fluid" style="height:160px">
+                        <a href="{{ url_for('pet', pet_id=pet.pet_id) }}" >
+                            <img src="{{url_for('static', filename='img/' + pet.image)}}" class="img-fluid" style="height:160px">
+                        </a>
 
                         <div class="card-body">
-                          <p class="card-text">{{pet.breed}}</p>
-                          <p class="card-text">{{pet.price}}$</p>
-                          <div class="d-flex justify-content-center align-items-center">
-                            <div class="flex flex-justify-between">
-                              <a href="{{ url_for('pet', pet_id=pet.pet_id) }}" class="btn btn-success btn-sm text-warning mx-1">View details</a>
-                              <a href="{{ url_for('remove', pet_id=pet.pet_id) }}" class="btn btn-danger btn-sm text-warning mx-1">Remove</a>
+                            <p class="card-text">Breed: {{pet.breed}}</p>
+                            <p class="card-text">Price: {{pet.price}}$</p>
+                             <div class="d-flex justify-content-center align-items-center">
+                                <div class="flex flex-justify-between">
+                                    <a href="{{ url_for('change_count', pet_id=pet.pet_id, sign=0) }}" class="btn btn-success btn-sm text-warning mx-1">-</a>
+                                    <span class="card-text">{{pet.count}}</span>
+                                    <a href="{{ url_for('change_count', pet_id=pet.pet_id, sign=1) }}" class="btn btn-success btn-sm text-warning mx-1">+</a>
+                                </div>
+                             </div>
+
+                            <div class="d-flex justify-content-center align-items-center">
+                                <div class="flex flex-justify-center my-2">
+                                    <a href="{{ url_for('remove', pet_id=pet.pet_id) }}" class="btn btn-danger btn-sm text-warning mx-1">Remove</a>
+                                </div>
                             </div>
-                          </div>
                         </div>
                       </div>
                     </div>
                 {% endfor %}
             </div>
             <hr>
-            <p>Total price: {{ cart.get_total() }}$</p>
+            <p>Count of all pets: {{ data.pets_count }} </p>
+            <p>Total price: {{ data.total }}$</p>
         {% else %}
             <h3>Your cart is empty now.</h3>
         {% endif %}
