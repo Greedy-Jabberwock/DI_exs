@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Todo list</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    </head>
+<body>
+    <div class="container my-5">
+        <h3>List of tasks: </h3>
+        <ul class="list-group list-group-vertical-sm">
+            {% if task_list %}
+                {% for task in task_list %}
+                    <li class="list-group-item">
+                        <span>
+                            {% if not task.completed %}
+                                <a href="{{url_for('complete', todo_id=task.id)}}" class="btn btn-success btn-sm">Check</a>
+                            {% else %}
+                                <a href="{{url_for('complete', todo_id=task.id)}}" class="btn btn-success btn-sm disabled">Completed</a>
+                            {% endif %}
+                        </span>
+                        {% if task.completed %}
+                           <span class="text-danger">
+                        {% else %}
+                            <span>
+                        {% endif %}
+                            {{ task.details }}
+                        </span>
+                        <span class="mx-3">
+                            <span class="position-absolute top-50 end-0 translate-middle mr-2">
+                                <a href="{{url_for('remove_task', todo_id=task.id)}}" class="btn btn-sm border border-light rounded-circle bg-danger">X</a>
+                            </span>
+                        </span>
+                    </li>
+                {% endfor %}
+                <li class="list-group-item d-flex justify-content-center">
+                    <a href="{{ url_for('remove_all') }}" class="btn btn-danger mx-auto">Remove all</a>
+                </li>
+            {% else %}
+                <p class="m-2">No tasks yet.</p>
+            {% endif %}
+        </ul>
+        <hr>
+        <form method="post">
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                    {{ form.hidden_tag() }}
+                    <label class="col-form-label">Enter new task to add:</label>
+                </div>
+                <div class="col-auto">
+                    {{ form.task(class="form-control") }}
+                </div>
+                <div class="col-auto">
+                    {{ form.submit(class='btn btn-info') }}
+                </div>
+            </div>
+        </form>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    </div>
+</body>
+</html>
