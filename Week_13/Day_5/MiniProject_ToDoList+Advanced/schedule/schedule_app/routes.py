@@ -1,7 +1,7 @@
 from schedule_app import app
 from flask import render_template, redirect, url_for, flash
 from schedule_app.forms import AddTodo
-from schedule_app.models import Todo
+from schedule_app.models import Todo, Image
 
 
 def get_task(todo_id):
@@ -13,7 +13,7 @@ def index():
     form = AddTodo()
     if form.validate_on_submit():
         task = Todo(details=form.task.data)
-        task.save_task_to_db()
+        task.save_task_to_db(form.image.data)
         return redirect(url_for('index'))
     tasks = Todo.get_tasks()
     return render_template('index.html', form=form, task_list=tasks)

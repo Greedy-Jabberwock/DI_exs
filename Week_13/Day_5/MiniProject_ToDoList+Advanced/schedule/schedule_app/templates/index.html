@@ -12,7 +12,11 @@
         <ul class="list-group list-group-vertical-sm">
             {% if task_list %}
                 {% for task in task_list %}
-                    <li class="list-group-item">
+                    <li class="list-group-item z-index-n1">
+
+                        <span class="mx-2">
+                            <img src="{{task.image.source}}" alt="" class="rounded" style="height:70px; width:70px">
+                        </span>
                         <span>
                             {% if not task.completed %}
                                 <a href="{{url_for('complete', todo_id=task.id)}}" class="btn btn-success btn-sm">Check</a>
@@ -21,9 +25,9 @@
                             {% endif %}
                         </span>
                         {% if task.completed %}
-                           <span class="text-danger">
+                           <span class="text-danger text-decoration-line-through mx-3">
                         {% else %}
-                            <span>
+                            <span class="mx-3">
                         {% endif %}
                             {{ task.details }}
                         </span>
@@ -34,8 +38,8 @@
                         </span>
                     </li>
                 {% endfor %}
-                <li class="list-group-item d-flex justify-content-center">
-                    <a href="{{ url_for('remove_all') }}" class="btn btn-danger mx-auto">Remove all</a>
+                <li class="list-group-item d-flex justify-content-center order-0">
+                    <a href="{{ url_for('remove_all') }}" class="btn btn-danger mx-auto order-0">Remove all</a>
                 </li>
             {% else %}
                 <p class="m-2">No tasks yet.</p>
@@ -43,15 +47,25 @@
         </ul>
         <hr>
         <form method="post">
-            <div class="row g-3 align-items-center">
+            <div class="row g-3 align-items-center my-1">
                 <div class="col-auto">
                     {{ form.hidden_tag() }}
                     <label class="col-form-label">Enter new task to add:</label>
                 </div>
-                <div class="col-auto">
+                <div class="col">
                     {{ form.task(class="form-control") }}
                 </div>
+            </div>
+            <div class="row g-3 align-items-center my-1">
                 <div class="col-auto">
+                    <label class="col-form-label">Enter image URL:</label>
+                </div>
+                <div class="col">
+                    {{ form.image(class="form-control") }}
+                </div>
+            </div>
+            <div class="row g-3 align-items-center my-1">
+                <div class="col-auto my-1">
                     {{ form.submit(class='btn btn-info') }}
                 </div>
             </div>
