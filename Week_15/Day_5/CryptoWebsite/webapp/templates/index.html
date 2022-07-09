@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block body %}
+    <div class="container-fluid">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Symbol</th>
+                    <th scope="col">Slug</th>
+                    <th scope="col">Is active</th>
+                    <th scope="col">First historical</th>
+                    <th scope="col">Last historical</th>
+                    <th scope="col">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for crypto in cryptos_list %}
+                    <tr>
+                        <td>{{crypto.id}}</td>
+                        <td>{{crypto.name}}</td>
+                        <td>{{crypto.symbol}}</td>
+                        <td>{{crypto.slug}}</td>
+                        <td>
+                            {% if crypto.is_active %} Yes {% else %} No {% endif %}
+                        </td>
+                        <td>{{crypto.first_historical_data}}</td>
+                        <td>{{crypto.last_historical_data}}</td>
+                        <td><a class="btn btn-sm btn-warning" href="{{url_for('crypto_page', crypto_id=crypto.id)}}">View</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock body %}
+

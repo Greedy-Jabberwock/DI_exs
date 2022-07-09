@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login
+{% endblock title %}
+
+{% block body %}
+    {% with msgs = get_flashed_messages(with_categories=True) %}
+        {% for category, msg in msgs %}
+            <p class="alert alert-{{category}}" role="alert">{{msg}}</p>
+        {% endfor %}
+    {% endwith %}
+    <div class="container mt-4">
+        <h3>SignUp</h3>
+        <div class="container">
+            <form method="post">
+                {{ signup.hidden_tag() }}
+                <div class="mb-3">
+                    {{ signup.username.label(class='form-label') }}
+                    {{ signup.username(class='form-control') }}
+                    {% for error in signup.username.errors %}
+                        <span class="d-inline-block alert alert-warning mt-1 mb-0 p-1 fs-6">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    {{ signup.email.label(class='form-label') }}
+                    {{ signup.email(class='form-control', id='signup_email') }}
+                    {% for error in signup.email.errors %}
+                        <span class="d-inline-block alert alert-warning mt-1 mb-0 p-1 fs-6">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    {{ signup.password.label(class='form-label') }}
+                    {{ signup.password(class='form-control', id='signup_password') }}
+                </div>
+                <div class="mb-3">
+                    {{ signup.password_check.label(class='form-label') }}
+                    {{ signup.password_check(class='form-control', id='signup_password_check') }}
+                </div>
+                {{ signup.submit(class='btn btn-primary') }}
+            </form>
+        </div>
+    </div>
+{% endblock body %}

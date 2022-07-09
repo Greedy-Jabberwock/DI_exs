@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Account
+{% endblock title %}
+
+{% block body %}
+<div class="container">
+    <div class="card">
+        <h5 class="card-header">Username</h5>
+        <p class="card-body">{{current_user.username}}</p>
+        <h5 class="card-header">Email:</h5>
+        <p class="card-body">{{current_user.email}}</p>
+        <h5 class="card-header">Your saved cryptos:</h5>
+        <table class="table">
+            {% for crypto in current_user.cryptos %}
+                <tr>
+                    <th scope="col">
+                        <a href="{{url_for('crypto_page', crypto_id=crypto.id)}}">{{crypto.name}}</a>
+                    </th>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock body %}

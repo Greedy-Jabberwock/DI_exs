@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login
+{% endblock title %}
+
+{% block body %}
+
+    <div class="container mt-4">
+        <h3>Login</h3>
+        <div class="container">
+            <form method="post">
+                {{ login.hidden_tag() }}
+                <div class="mb-3">
+                    {{ login.username.label(class='form-label') }}
+                    {{ login.username(class='form-control') }}
+                </div>
+                <div class="mb-3">
+                    {{ login.password.label(class='form-label') }}
+                    {{ login.password(class='form-control') }}
+                </div>
+                <div class="mb-3 form-check">
+                    {{ login.remember(class='form-check-input') }} Remember me
+                </div>
+                    {{ login.submit(class='btn btn-primary') }}
+            </form>
+        </div>
+    </div>
+{% endblock body %}
